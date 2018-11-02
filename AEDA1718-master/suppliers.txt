@@ -1,0 +1,5 @@
+1, Cruzeiros Douro, 509758851, Rua do Passeio Alegre, nº 20, Porto;
+2, Roteiros do Douro, 504413732, Avenida Diogo Leite, nº 250, Vila Nova de Gaia;
+3, Douro Azul, 503657398, Rua de Miragaia, nº 103, Porto;
+4, Mares de Portugal, 509384501, Travessa Arco a Jesus, nº3A, Lisboa;
+5, Navegadores, 509339143, Avenida Dr.Carlos Pinto Ferreira, nº34, Vila do Conde;

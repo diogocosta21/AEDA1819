@@ -1,0 +1,10 @@
+1, Tiago Pereira, 198475290, 4/5/2015, Rua Senhora do Porto 765 4269-003 Porto;
+2, Cristina Ferreira, 298043098, 6/7/2016, Rua Zona Industrial 2ª Fase 11 4939-001 Neiva;
+3, Daniel Alves, 290849758, 7/11/2016, Rua Domingos Capas Penêda 4425-006 Maia;
+4, Eduardo Oliveira, 111930492, 21/5/2017, Avenida dos Escultores 4404-504 Vila Nova de Gaia;
+5, Sandro Guerreiro, 144378978, 23/8/2017, Rua do Cadinho 4910-001 Âncora;
+6, Paulo Neto, 908769080, 25/12/2017, Rua da Constituição 2087 4269-005 Porto;
+7, Diogo Dias, 123456789, 1/1/2018, Rua Doutor Teixeira Guedes 2004-001 Santarém;
+8, Felicio Moutinho, 523146789, 25/11/2017, Rua 9 de Julho 2 7801-852 Beja;
+9, Dinis Carvalho, 123456789, 20/11/2017, Rua Dom Nuno Álvares Pereira 7801-853 Beja;
+10, Manuel Meireles, 123456789, 10/12/2017, Rua Guilherme Braga 38 4404-508 Vila Nova de Gaia;

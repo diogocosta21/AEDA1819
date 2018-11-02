@@ -1,0 +1,14 @@
+1, João Santos, 233448432, 20/12/2017, Travessa da Eira 4410-104 São Félix da Marinha, 258;
+2, Manuel Ferreira, 124785231, 10/12/2017, Rua da Esperança 4410-490 Serzedo, 18;
+3, Carlos Sousa, 158392013, 1/12/2017, Travessa do Mocho Anta 4500-108 Espinho, 145;
+4, Luis Novais, 234875109, 1/1/2018, Praceta de Timor Bairro da Mata 7100-101 Estremoz, 150;
+5, Joana Oliveira, 293045298, 23/11/2017, Rua Tierno Galvan 3 1099-008 Lisboa, 223;
+6, Henrique Lemos, 454853123, 1/1/2018, Rua Teles Matos 7100-002 Arcos, 103;
+7, Vitor Gomes, 247185009, 20/12/2017, Rua Chafariz de El-Rei 22 7009-504 Évora, 130;
+8, Fernanda Sousa, 104114167, 20/12/2017, Rua do Costa 4410-007 Canelas, 53;
+9, Paula Gonçalves, 189465888, 13/12/2017, Largo Monterroio de Mascarenhas 1099-008 Lisboa, 153;
+10, Oscar Lopes, 988405990, 1/1/2018, Rua Batalha Reis 6301-860 Guarda, 19;
+11, Ivo Bessa, 140294853, 15/11/2017, Avenida José Malhoa 1099-008 Lisboa, 24;
+12, Ricardo Soares, 909890980, 1/12/2017, Avenida 16 de Maio Zona Industrial 3880-102 Ovar, 260;
+13, Joaquim Silva, 503416789, 30/12/2017, Escadinhas Albano Fonseca 6285-107 Vide, 234;
+14, Rui Vale, 275684938, 14/12/2017, Rua da Casa de Saúde 2 7301-852 Portalegre, 20;

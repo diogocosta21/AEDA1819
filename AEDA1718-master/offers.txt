@@ -1,0 +1,15 @@
+1, 11/1/2018, Cruzeiros Douro, 83, 224, 6, Veleiro, Régua, 5, 2, 6/12/2017;
+2, 18/1/2018, Cruzeiros Douro, 90, 260, 13, Veleiro, Pinhão, 8, 3, 17/12/2017;
+3, 17/1/2018, Cruzeiros Douro, 108, 250, 110, Barco Rabelo, Pinhão, 10, 5, 23/12/2017;
+4, 19/1/2018, Roteiros do Douro, 110, 236, 79, Barco Rabelo, Régua, 13, 5, 8/1/2018;
+5, 23/1/2018, Mares de Portugal, 150, 482, 30, Iate, Barca d´Alva, 20, 8, 2/1/2018;
+6, 29/1/2018, Mares de Portugal, 137, 261, 28, Iate, Pinhão, 17, 8, 23/12/2017;
+7, 10/1/2018, Douro Azul, 100, 378, 105, Barco Rabelo, Régua, 18, 6, 1/12/2017;
+8, 2/2/2018, Mares de Portugal, 106, 390, 4, Veleiro, Barca d´Alva, 22, 4, 26/11/2017;
+9, 17/1/2018, Navegadores, 170, 400, 24, Iate, Barca d´Alva, 28, 9, 30/12/2017;
+10, 14/1/2018, Navegadores, 124, 251, 100, Barco Rabelo, Pinhão, 9, 5, 29/11/2017;
+11, 1/2/2018, Douro Azul , 2, 55, 18, Iate, Régua, 11, 19, 14/12/2017;
+12, 24/1/2018, Mares de Portugal , 14, 90, 12, Iate, Pinhão, 21, 12, 30/12/2017;
+13, 26/1/2018, Douro Azul, 25, 12, 56, Iate, Barca d'Alva, 10, 14, 17/11/2017;
+14, 19/1/2018, Douro Azul, 25, 35, 51, Iate, Régua, 11, 16, 14/12/2017;
+15, 12/1/2018, Navegadores, 54, 23, 50, Iate, Pinhão, 24, 26, 3/12/2017;
