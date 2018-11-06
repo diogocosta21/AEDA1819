@@ -59,20 +59,10 @@ unsigned int Date::convertToDays ()
 	}
 	for (int i = year-1; i > 1582; i--)
 	{
-	    if(year % 100 == 0)
-	    {
-	        if(year % 400 == 0)
-	            convertToDays += 366;
-	        else
-	            convertToDays += 365;
-	    }
+	    if(year % 4 == 0)
+	    	convertToDays += 366;
 	    else
-	    {
-	        if(year % 4 == 0)
-	            convertToDays += 366;
-	         else
-	            convertToDays += 365;
-	    }
+	    	convertToDays += 365;
 	}
 
 	return convertToDays;
