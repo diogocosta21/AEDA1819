@@ -79,7 +79,7 @@ unsigned int Date::daysBetween (Date d1)
 }
 
 
-bool Date::operator<= (const Date& right) const
+bool Date::operator <= (const Date& right) const
 {
 	vector<int> l,r;
 
@@ -105,7 +105,7 @@ bool Date::operator<= (const Date& right) const
 }
 
 
-bool Date::operator==(const Date& right) const
+bool Date::operator ==(const Date& right) const
 
 {
 	if(this->day == right.day && this->month== right.month && this->year == right.year)

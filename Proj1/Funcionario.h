@@ -21,5 +21,4 @@ public:
 };
 
 
-
 #endif /* FUNCIONARIO_H_ */
