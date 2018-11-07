@@ -17,24 +17,24 @@
 using namespace std;
 
 
-class Date {
+class Data {
 private:
-	unsigned int day;
-	unsigned int month;
-	unsigned int year;
+	unsigned int dia;
+	unsigned int mes;
+	unsigned int ano;
 public:
-	Date(){};
-	Date (unsigned int d, unsigned int m, unsigned int y);
-	Date (string date);
-	virtual ~Date();
-	unsigned int getDay() const;
-	unsigned int getMonth() const;
-	unsigned int getYear() const;
-	unsigned int convertToDays();
-	unsigned int daysBetween (Date d1);
-	bool operator <= (const Date& right) const;
-	bool operator ==(const Date& right) const;
-	bool validateDate();
+	Data(){};
+	Data (unsigned int d, unsigned int m, unsigned int a);
+	Data (string data);
+	virtual ~Data();
+	unsigned int getDia() const;
+	unsigned int getMes() const;
+	unsigned int getAno() const;
+	unsigned int converteEmDias();
+	unsigned int daysBetween (Data d1);
+	bool operator <= (const Data& right) const;
+	bool operator ==(const Data& right) const;
+	bool validateData();
 };
 
 

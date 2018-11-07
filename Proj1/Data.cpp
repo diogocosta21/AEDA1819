@@ -8,87 +8,87 @@
 #include "Data.h"
 
 
-Date::Date(unsigned int d, unsigned int m, unsigned int y) : day(d), month(m), year(y)
+Data::Data(unsigned int d, unsigned int m, unsigned int a) : dia(d), mes(m), ano(a)
 {}
 
 
-Date::Date(string date)
+Data::Data(string data)
 {
-	string d = date.substr(0, date.find('-'));
-	date = date.substr(date.find('-') + 1);
-	string m = date.substr(0, date.find('-'));
-	date = date.substr(date.find('-') + 1);
+	string d = data.substr(0, data.find('-'));
+	data = data.substr(data.find('-') + 1);
+	string m = data.substr(0, data.find('-'));
+	data = data.substr(data.find('-') + 1);
 
-	day = (unsigned int) stoi(d.c_str());
-	month = (unsigned int) stoi(m.c_str());;
-	year = (unsigned int) stoi(date.c_str());;
+	dia = (unsigned int) stoi(d.c_str());
+	mes = (unsigned int) stoi(m.c_str());;
+	ano = (unsigned int) stoi(data.c_str());;
 
 }
 
 
-Date::~Date()
+Data::~Data()
 {}
 
 
-unsigned int Date::getDay() const
+unsigned int Data::getDia() const
 {
-	return this->day;
+	return this->dia;
 }
 
 
-unsigned int Date::getMonth() const
+unsigned int Data::getMes() const
 {
-	return this->month;
+	return this->mes;
 }
 
 
-unsigned int Date::getYear() const
+unsigned int Data::getAno() const
 {
-	return this->year;
+	return this->ano;
 }
 
 
-unsigned int Date::convertToDays ()
+unsigned int Data::converteEmDias ()
 {
-	int convertToDays = 0;
-	int daysInMonth[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
-	convertToDays += day;
-	for (int i = month-1; i > 0; i--)
+	int converteEmDias = 0;
+	int diasdoMes[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+	converteEmDias+= dia;
+	for (int i = mes-1; i > 0; i--)
 	{
-	    convertToDays += daysInMonth[i];
+	    converteEmDias += diasdoMes[i];
 	}
-	for (int i = year-1; i > 1582; i--)
+	for (int i = ano-1; i > 1582; i--)
 	{
-	    if(year % 4 == 0)
-	    	convertToDays += 366;
+	    if(ano % 4 == 0)
+	    	converteEmDias += 366;
 	    else
-	    	convertToDays += 365;
+	    	converteEmDias += 365;
 	}
 
-	return convertToDays;
+	return converteEmDias;
 }
 
 
 
-unsigned int Date::daysBetween (Date d1)
+unsigned int Data::daysBetween (Data d1)
 {
-	if (this->convertToDays() > d1.convertToDays())
-	        return this->convertToDays() - d1.convertToDays();
+	if (this->converteEmDias() > d1.converteEmDias())
+	        return this->converteEmDias() - d1.converteEmDias();
 	    else
-	        return d1.convertToDays() - this->convertToDays();
+	        return d1.converteEmDias() - this->converteEmDias();
 }
 
 
-bool Date::operator <= (const Date& right) const
+bool Data::operator <= (const Data& right) const
 {
 	vector<int> l,r;
 
-	l.push_back(this->year);
-	l.push_back(this->month);
-	l.push_back(this->day);
-	r.push_back(right.year);
-	r.push_back(right.month);
-	r.push_back(right.day);
+	l.push_back(this->ano);
+	l.push_back(this->mes);
+	l.push_back(this->dia);
+	r.push_back(right.ano);
+	r.push_back(right.mes);
+	r.push_back(right.dia);
 
 	if (l == r)
 		return true;
@@ -105,29 +105,29 @@ bool Date::operator <= (const Date& right) const
 }
 
 
-bool Date::operator ==(const Date& right) const
+bool Data::operator ==(const Data& right) const
 
 {
-	if(this->day == right.day && this->month== right.month && this->year == right.year)
+	if(this->dia == right.dia && this->mes== right.mes && this->ano == right.ano)
 		return true;
 
 	return false;
 }
 
 
-bool Date::validateDate()
+bool Data::validateData()
 {
-	if(month < 0 || month > 12)
+	if(mes < 0 || mes > 12)
 		return false;
-	if(day < 0 || day > 31)
+	if(dia < 0 || dia > 31)
 		return false;
-	if((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-		return false;
-
-	if(month == 2 && year%4 == 0 && day > 29)
+	if((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
 		return false;
 
-	if(month == 2 && year%4 != 0 && day > 28)
+	if(mes == 2 && ano%4 == 0 && dia > 29)
+		return false;
+
+	if(mes == 2 && ano%4 != 0 && dia > 28)
 		return false;
 
 	return true;
