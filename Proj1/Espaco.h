@@ -28,9 +28,10 @@ class Quarto: public Espaco {
 	string local;
 	int simples_preco = 75;
 	int duplo_preco = 100;
+	bool reservado = false;
 public:
-	Quarto() {};
-	Quarto (string t, string l);
+	Quarto();
+	Quarto (string t, string l, bool reserv);
 	string getTipo() const;
 	string getLocal() const;int getPreco() const;
 };
@@ -44,9 +45,10 @@ class SalaReuniao: public Espaco {
 	bool audio = false;
 	int acres_video = 50;
 	int acres_audio = 50;
+	bool reservado = false;
 public:
 	SalaReuniao();
-	SalaReuniao(int Capacidade);
+	SalaReuniao(int Capacidade, bool reserv);
 	int getPreco() const;
 	int getCapacidade() const;
 };

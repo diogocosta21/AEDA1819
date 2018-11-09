@@ -21,17 +21,18 @@ using namespace std;
 #include "Espaco.h"
 #include "Funcionario.h"
 #include "Data.h"
+#include "Hotel.h"
 
 class FileReader
 {
 private:
 	static vector<string> readLines(string file);
 public:
-	static vector<RegisteredClient *> readRegisteredClients(string file);
-	static vector<OccasionalClient *> readOccasionalClients(string file);
-	static vector<Supplier *> readSuppliers(string file);
-	static vector<Offer *> readOffers(string file);
-	static vector <Reservation> readReservations (string file);
+	static vector<Cliente *> readClientes(string file);
+	//static vector<OccasionalClient *> readOccasionalClients(string file);
+	static vector<Quarto *> readQuartos(string file);
+	static vector<SalaReuniao *> readSalasReuniao(string file);
+	static vector <Funcionario *> readFuncionarios (string file);
 };
 
 

@@ -14,9 +14,10 @@ using namespace std;
 
 class Funcionario {
 	string nome;
+	int NIF;
 	bool supervisor;
 public:
-	Funcionario(string nome, bool supervisor);
+	Funcionario(string nome, int NIF, bool supervisor);
 	string getNome() const;
 };
 

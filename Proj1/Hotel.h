@@ -34,7 +34,7 @@ public:
 	void exportQuartos(string file);
 	void exportSalasReuniao(string file);
 	void addCliente(string nome, int NIF);
-	void addFuncionario(string nome, bool supervisor);
+	void addFuncionario(string nome, int NIF, bool supervisor);
 	void addQuarto(string tipo, string lugar);
 	void addSalaReuniao(int capacidade);
 	vector<Cliente *> getClientes() const;

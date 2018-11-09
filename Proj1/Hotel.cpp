@@ -83,23 +83,23 @@ void Hotel::addCliente(string nome, int NIF)
 }
 
 
-void Hotel::addFuncionario(string nome, bool supervisor)
+void Hotel::addFuncionario(string nome, int NIF, bool supervisor)
 {
-	Funcionario * func = new Funcionario(nome, supervisor);
+	Funcionario * func = new Funcionario(nome, NIF, supervisor);
 	funcionarios.push_back(func);
 }
 
 
 void Hotel::addQuarto(string tipo, string lugar)
 {
-	Quarto * quarto = new Quarto(tipo, lugar);
+	Quarto * quarto = new Quarto(tipo, lugar, false);
 	quartos.push_back(quarto);
 }
 
 
 void Hotel::addSalaReuniao(int capacidade)
 {
-	SalaReuniao * sr = new SalaReuniao(capacidade);
+	SalaReuniao * sr = new SalaReuniao(capacidade, false);
 	salasreuniao.push_back(sr);
 }
 

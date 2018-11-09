@@ -26,11 +26,11 @@ public:
 	virtual ~Cliente();
 	string getNome() const;
 	unsigned int getNIF() const;
-	void setId() const;
+	void setId() const;                            // Esta a ser usado?
 	unsigned int getId() const;
 	Data getUltimaReserva() const;
 	void setUltimaReserva(const Data &d);
-	virtual string getInformacao() const;
+	virtual string getInformacao() const;          // Porque Virtual?
 	bool operator == (const Cliente &Cl1) const;
 	friend ostream &operator << (ostream &os, Cliente &c1);
 };

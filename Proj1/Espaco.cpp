@@ -23,10 +23,11 @@ Funcionario *Espaco::getFuncionario() const
 
 //=============================================
 
-Quarto::Quarto(string t, string l)
+Quarto::Quarto(string t, string l, bool reserv)
 {
 	tipo = t;
 	local = l;
+	reservado = reserv;
 }
 
 string Quarto::getTipo() const
@@ -62,11 +63,12 @@ int Quarto::getPreco() const
 
 //==========================================================================
 
-SalaReuniao::SalaReuniao(int Capacidade) : capacidade (Capacidade) {
+SalaReuniao::SalaReuniao(int Capacidade, bool reserv) : capacidade (Capacidade) {
 	if (capacidade <= 20)
 		preco = 100;
 	if (capacidade <= 50 && capacidade > 20)
 		preco = 200;
+	reservado = reserv;
 };
 
 

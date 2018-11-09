@@ -10,9 +10,10 @@
 
 using namespace std;
 
-Funcionario::Funcionario(string nome, bool supervisor)
+Funcionario::Funcionario(string nome, int NIF, bool supervisor)
 {
 	this -> nome = nome;
+	this -> NIF = NIF;
 	this -> supervisor = supervisor;
 }
 
