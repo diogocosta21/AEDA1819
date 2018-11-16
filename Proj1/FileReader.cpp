@@ -1,16 +1,8 @@
 /*
  * FileReader.cpp
  *
- *  Created on: 09/11/2018
- *      Author: up201505198
- */
-
-
-/*
- * FileReader.cpp
- *
- *  Created on: 06/11/2017
- *      Author: ricar
+ *  Created on: 16/11/2018
+ *      Author: joao_
  */
 
 #include "FileReader.h"
@@ -22,7 +14,6 @@ using namespace std;
 
 /**
  * Gets line from file and puts it in a vector.
-
  * @param file file to be read.
  */
 vector<string> FileReader::readLines(string file) {
@@ -55,22 +46,16 @@ vector<Cliente *> FileReader::readClientes(string file)
 	for (unsigned int i = 0; i < lines.size(); i++)
 	{
 		string line = lines[i];
-		string nome, NIF, dia, mes, ano;
+		string nome, NIF, numRes;
 
 		line = line.substr(line.find(',') + 2);
 		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		NIF = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
-		dia = line.substr(0, line.find('/'));
-		line = line.substr(line.find('/') + 1);
-		mes = line.substr(0,line.find('/'));
-		line = line.substr(line.find('/') + 1);
-		ano = line.substr (0, line.find(';'));
+		numRes = line.substr(0, line.find(';'));
 
-
-		Data d = Data (stoi(dia.c_str()), stoi(mes.c_str()), stoi(ano.c_str()) );
-		Cliente * cl = new Cliente (nome, stoi(NIF.c_str()), d);
+		Cliente * cl = new Cliente (nome, stoi(NIF.c_str()), numRes);
 		clientes.push_back(cl);
 	}
 
@@ -78,44 +63,6 @@ vector<Cliente *> FileReader::readClientes(string file)
 	return clientes;
 }
 
-/**
- * Reads information from occasional clients.
- * @param file occasional clients' file.
- */
-/*
-vector<OccasionalClient*> FileReader::readOccasionalClients(string file)
-{
-	vector<OccasionalClient *> oClients;
-	vector<string> lines = FileReader::readLines(file);
-
-	for (unsigned int i = 0; i < lines.size(); i++)
-	{
-		string line = lines[i];
-		string name, NIF, day, address, month, year;
-
-		line = line.substr(line.find(',') + 2);
-		name = line.substr(0, line.find(','));
-		line = line.substr(line.find(',') + 2);
-		NIF = line.substr(0, line.find(','));
-		line = line.substr(line.find(',') + 2);
-		day = line.substr(0, line.find('/'));
-		line = line.substr(line.find('/') + 1);
-		month = line.substr(0,line.find('/'));
-		line = line.substr(line.find('/') + 1);
-		year = line.substr (0, line.find(','));
-		line = line.substr(line.find(',') + 2);
-		address = line.substr(0, line.find(';'));
-
-		Date d = Date(stoi(day.c_str()), stoi(month.c_str()), stoi(year.c_str()) );
-
-		OccasionalClient *oc = new OccasionalClient(name, stoi(NIF.c_str()), d, address);
-		oClients.push_back(oc);
-	}
-
-
-	return oClients;
-}
-*/
 
 /**
  * Reads information from suppliers.
@@ -178,7 +125,7 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 		}
 
 
-		SalaReuniao *s = new SalaReuniao (stoi(capacidade.c_str()), reservado);
+		SalaReuniao *s = new SalaReuniao (stoi(capacidade.c_str()), video, audio, reservado);
 		salasreuniao.push_back(s);
 	}
 
@@ -212,10 +159,12 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 			supervisor = true;
 		}
 
-		Funcionario *f = new Funcionario (nome, stoi(NIF.c_str()), supervisor);
+		Funcionario *f = new Funcionario (nome, supervisor);
 		funcionarios.push_back(f);
 
 	}
 
 	return funcionarios;
 }
+
+

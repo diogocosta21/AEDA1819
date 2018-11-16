@@ -16,21 +16,26 @@ using namespace std;
 
 class Cliente {
 private:
+	/**
+	 * Nome do cliente
+	 */
 	string nome;
+	/**
+	 * NIF do cliente
+	 */
 	unsigned int NIF;
-	unsigned int id;
-	Data ultimaReserva;
+	/**
+	 * Numero de reservas feitas pelo cliente
+	 */
+	unsigned int numRes;
 public:
 	Cliente(){};
-	Cliente(string n, unsigned int NIF, Data uR);
+	Cliente(string n, unsigned int NIF, unsigned int nR);
 	virtual ~Cliente();
 	string getNome() const;
 	unsigned int getNIF() const;
-	void setId() const;                            // Esta a ser usado?
-	unsigned int getId() const;
-	Data getUltimaReserva() const;
-	void setUltimaReserva(const Data &d);
-	virtual string getInformacao() const;          // Porque Virtual?
+	unsigned int getNR() const;
+	string getInformacao() const;
 	bool operator == (const Cliente &Cl1) const;
 	friend ostream &operator << (ostream &os, Cliente &c1);
 };

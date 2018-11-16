@@ -9,16 +9,24 @@
 #define FUNCIONARIO_H_
 
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 class Funcionario {
+	/**
+	 * Nome do funcionario
+	 */
 	string nome;
-	int NIF;
+	/**
+	 * Verdade se o funcionario for supervisor
+	 */
 	bool supervisor;
 public:
-	Funcionario(string nome, int NIF, bool supervisor);
+	Funcionario(string nome, bool supervisor);
 	string getNome() const;
+	string getSupervisor() const;
+	string getInformacao() const;
 };
 
 

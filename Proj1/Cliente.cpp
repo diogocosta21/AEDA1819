@@ -10,71 +10,76 @@
 
 using namespace std;
 
-static unsigned int ID = 1;
-
-
-Cliente::Cliente(string n, unsigned int NIF, Data uR): nome(n)
+/**
+ * Constructor
+ * n - Nome do cliente
+ * NIF - NIF do cliente
+ * nR - Numero de reservas feitas pelo cliente
+ */
+Cliente::Cliente(string n, unsigned int NIF, unsigned int nR): nome(n), numRes(nR)
 {
 	this->NIF = NIF;
-	this->ultimaReserva = uR;
-	id = ID;
-	ID++;
+
 }
 
-
+/**
+ * Destructor
+ */
 Cliente::~Cliente(){}
 
-
+/**
+ * Retorna nome
+ */
 string Cliente::getNome() const
 {
 	return nome;
 }
 
-
+/**
+ * Retorna NIF
+ */
 unsigned int Cliente::getNIF() const
 {
 	return NIF;
 }
 
-
-unsigned int Cliente::getId() const
+/**
+ * Retorna numero de reservas feitas pelo cliente
+ */
+unsigned int Cliente::getNR() const
 {
-	return id;
+	return numRes;
 }
 
-
-Data Cliente::getUltimaReserva() const
-{
-	return ultimaReserva;
-}
-
-void Cliente::setUltimaReserva(const Data &d)
-{
-	this->ultimaReserva = d;
-}
-
-
+/**
+ * Retorna string com nome e NIF do cliente
+ */
 string Cliente::getInformacao() const
 {
 	stringstream ss;
 
-	ss << " " << getNome() << ", " << getNIF();
+	ss << " " << getNome() << ", " << getNIF() << ", " << getNR();
 
 	return ss.str();
 }
 
-
+/**
+ * Retorna true se cliente for o mesmo e falso no caso contrario
+ */
 bool Cliente::operator == (const Cliente &Cl1) const
 {
-	if(this->nome == Cl1.getNome()) return true;
+	if(this->NIF == Cl1.getNIF()) return true;
 	return false;
 }
 
-
+/**
+ * Escreve para ofstream a informacao do cliente no formato usado no ficheiro de texto
+ * os - ostream onde é guardada informacao
+ * c1 - Cliente cuja informacao é lida
+ */
 ostream &operator << (ostream &os, Cliente &c1)
 {
-	os << c1.getId() << ", " << c1.getNome() << ", " << c1.getNIF() << ", "
-			<< c1.getUltimaReserva().getDia() << "/" << c1.getUltimaReserva().getMes() << "/" << c1.getUltimaReserva().getAno();
+	os << c1.getNome() << ", " << c1.getNIF();
 	return os;
 }
 

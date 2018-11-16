@@ -22,6 +22,13 @@ private:
 	unsigned int dia;
 	unsigned int mes;
 	unsigned int ano;
+	string segundafeira;
+	string tercafeira;
+	string quartafeira;
+	string quintafeira;
+	string sextafeira;
+	string sabado;
+	string domingo;
 public:
 	Data(){};
 	Data (unsigned int d, unsigned int m, unsigned int a);
