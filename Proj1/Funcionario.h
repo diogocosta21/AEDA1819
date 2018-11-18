@@ -14,18 +14,26 @@
 using namespace std;
 
 class Funcionario {
+protected:
 	/**
 	 * Nome do funcionario
 	 */
 	string nome;
-	/**
-	 * Verdade se o funcionario for supervisor
-	 */
-	bool supervisor;
 public:
-	Funcionario(string nome, bool supervisor);
+	Funcionario(){};
+	Funcionario(string nome);
 	string getNome() const;
-	string getSupervisor() const;
+	string getInformacao() const;
+};
+
+class Supervisor: public Funcionario {
+	/**
+	 * Numero de quartos da responsabilidade do supervisor
+	 */
+	unsigned int numQuartos;
+public:
+	Supervisor(string nome, unsigned int numQuartos);
+	unsigned int getNumQuartos() const;
 	string getInformacao() const;
 };
 

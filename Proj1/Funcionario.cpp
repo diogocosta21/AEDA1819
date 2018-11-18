@@ -13,12 +13,10 @@ using namespace std;
 /**
  * Constructor
  * nome- nome do funcionario
- * supervisor - verdade se for supervisor
  */
-Funcionario::Funcionario(string nome, bool supervisor)
+Funcionario::Funcionario(string nome)
 {
-	this -> nome = nome;
-	this -> supervisor = supervisor;
+	this->nome = nome;
 }
 
 /**
@@ -30,22 +28,43 @@ string Funcionario::getNome() const
 }
 
 /**
- * Retorna informacao sobre se o funcionario é supervisor ou nao
- */
-string Funcionario::getSupervisor() const
-{
-	if(supervisor)
-		return "Supervisor";
-	else
-		return "Nao Supervisor";
-}
-
-/**
  * Retorna string com nome e informacao se o funcionario é supervisor ou nao
  */
 string Funcionario::getInformacao() const
 {
 	stringstream ss;
-	ss << " " << getNome() << ", " << getSupervisor();
+	ss << " " << getNome();
 	return ss.str();
 }
+
+/**
+ * Constructor
+ * nome - Nome do supervisor
+ * numQuartos - Numero de quartos da responsabilidde do supervisor
+ */
+Supervisor::Supervisor(string nome, unsigned int numQuartos)
+{
+	this->nome = nome;
+	this->numQuartos = numQuartos;
+}
+
+/**
+ * Retorna numero de quartos da responsabildade do supervisor
+ */
+unsigned int Supervisor::getNumQuartos() const
+{
+	return numQuartos;
+}
+
+/**
+ * Retorna string com nome e numero de quartos da responsabilidade do supervisor
+ */
+string Supervisor::getInformacao() const
+{
+	stringstream ss;
+	ss << " " << getNome() << ", " << getNumQuartos();
+	return ss.str();
+}
+
+
+

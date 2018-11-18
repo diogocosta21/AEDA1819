@@ -55,7 +55,7 @@ vector<Cliente *> FileReader::readClientes(string file)
 		line = line.substr(line.find(',') + 2);
 		numRes = line.substr(0, line.find(';'));
 
-		Cliente * cl = new Cliente (nome, stoi(NIF.c_str()), numRes);
+		Cliente * cl = new Cliente (nome, stoi(NIF.c_str()), stoi(numRes.c_str()));
 		clientes.push_back(cl);
 	}
 
@@ -110,19 +110,31 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 	for (unsigned int i = 0; i < lines.size(); i++)
 	{
 		string line = lines[i];
-		string nome, capacidade, reserv;
+		string nome, capacidade, vid, aud, reserv;
 
 		line = line.substr(line.find(',') + 2);
 		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		capacidade = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
+		vid = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
+		aud = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
 		reserv = line.substr(line.find(';'));
 
 		bool reservado = false;
-		if (reserv == "reservado"){
+		if (reserv == "reservada"){
 			reservado = true;
 		}
+
+		bool video = false;
+		if(vid == "com equipamento de video")
+			video = true;
+
+		bool audio = false;
+		if(aud == "com equipamento de audio")
+			audio = true;
 
 
 		SalaReuniao *s = new SalaReuniao (stoi(capacidade.c_str()), video, audio, reservado);
@@ -159,7 +171,7 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 			supervisor = true;
 		}
 
-		Funcionario *f = new Funcionario (nome, supervisor);
+		Funcionario *f = new Funcionario (nome);
 		funcionarios.push_back(f);
 
 	}

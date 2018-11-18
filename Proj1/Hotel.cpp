@@ -117,7 +117,7 @@ void Hotel::addCliente(string nome, int NIF, unsigned int numRes)
  */
 void Hotel::addFuncionario(string nome, bool supervisor)
 {
-	Funcionario * func = new Funcionario(nome, supervisor);
+	Funcionario * func = new Funcionario(nome);
 	funcionarios.push_back(func);
 }
 

@@ -16,12 +16,12 @@ using namespace std;
 class Espaco {
 protected:
 	/**
-	 * Funcionario reponsavel pelo espaço
+	 * Supervisor reponsavel pelo espaço
 	 */
-	Funcionario *func;
+	Supervisor *sup;
 public:
-	void setFuncionario(Funcionario *func);
-	Funcionario *getFuncionario() const;
+	void setSupervisor(Supervisor *sup);
+	Supervisor *getSupervisor() const;
 };
 
 //===================================================

@@ -14,17 +14,17 @@ using namespace std;
 /**
  * Define funcionario responsavel pelo espaco
  */
-void Espaco::setFuncionario(Funcionario *func)
+void Espaco::setSupervisor(Supervisor *sup)
 {
-	this -> func = func;
+	this -> sup = sup;
 }
 
 /**
  * Retorna funcionario responsavel pelo espaco
  */
-Funcionario *Espaco::getFuncionario() const
+Supervisor *Espaco::getSupervisor() const
 {
-	return func;
+	return sup;
 }
 
 
