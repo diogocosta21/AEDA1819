@@ -18,6 +18,7 @@ using namespace std;
 #include "Cliente.h"
 #include "Espaco.h"
 #include "Funcionario.h"
+#include "Excecoes.h"
 
 class Hotel {
 private:

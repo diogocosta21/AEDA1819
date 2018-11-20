@@ -68,6 +68,14 @@ unsigned int Data::converteEmDias ()
 	return converteEmDias;
 }
 
+unsigned int Data::valorData() {
+	int valordata = 0;
+	valordata=+ ano * 1000;
+	valordata=+ (mes*100);
+	valordata=+ dia;
+
+	return valordata;
+}
 
 
 unsigned int Data::daysBetween (Data d1)

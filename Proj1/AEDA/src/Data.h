@@ -38,6 +38,7 @@ public:
 	unsigned int getMes() const;
 	unsigned int getAno() const;
 	unsigned int converteEmDias();
+	unsigned int valorData();
 	unsigned int daysBetween (Data d1);
 	bool operator <= (const Data& right) const;
 	bool operator ==(const Data& right) const;

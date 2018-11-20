@@ -9,6 +9,8 @@
 #define ESPACO_H_
 
 #include "Funcionario.h"
+#include "Data.h"
+#include "Excecoes.h"
 #include <string>
 
 using namespace std;
@@ -52,7 +54,9 @@ public:
 	Quarto (string t, string l, bool res);
 	string getTipo() const;
 	string getLocal() const;
-	int getPreco() const;
+	int getPrecoQuarto() const;
+	int getPrecoMes(Data d) const;
+	int getPrecoFinal(Data d1, Data d2) const;
 	string getRes() const;
 	string getInformacao() const;
 	void setRes();
@@ -94,6 +98,7 @@ public:
 	SalaReuniao();
 	SalaReuniao(int Capacidade, bool video, bool audio, bool reservado);
 	int getPreco() const;
+	int getPrecoMes(Data d) const;
 	int getCapacidade() const;
 	string getAudio() const;
 	string getVideo() const;

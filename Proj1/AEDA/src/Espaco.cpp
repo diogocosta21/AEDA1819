@@ -61,25 +61,75 @@ string Quarto::getLocal() const
 /**
  * Retrona preco do quarto
  */
-int Quarto::getPreco() const
+int Quarto::getPrecoQuarto() const
 {
-	if(getTipo() == "simples") {
+	if(getTipo() == "simples")
+	{
 		if(getLocal() == "frente")
 			return simples_preco * 1.25;
 		else if(getLocal() == "traseiras")
 			return simples_preco;
-		//else excecao
 	}
 
-	else if(getTipo() == "duplo") {
+	else //(getTipo() == "duplo")
+	{
 		if(getLocal() == "frente")
 			return duplo_preco * 1.25;
 		else if(getLocal() == "traseiras")
 			return duplo_preco;
-		//else excecao
-
-		//else excecao
 	}
+}
+
+int Quarto::getPrecoMes(Data d) const {
+	int mes = d.getMes();
+	if ((6 <= mes && mes <= 8) || mes == 12){
+		return getPrecoQuarto()*1.5;
+	}
+	else
+		return getPrecoQuarto();
+}
+
+int Quarto::getPrecoFinal(Data d1, Data d2) const {
+	int d1ano = d1.getAno();
+	int d1mes = d1.getMes();
+	int d1dia = d1.getDia();
+	int d2ano = d2.getAno();
+	int d2mes = d2.getMes();
+	int d2dia = d2.getDia();
+
+	int dias100 = 0;
+	int dias150 = 0;
+
+	int limite = 530;     // ate fim de junho
+	int limite2 = 831;    // ate fim de agosto
+	int limite3 = 1130;   // ate fim de novembro
+	int limite4 = 1231;   // ate fim de dezembro
+
+	if (d1ano != d2ano)
+	{
+		Data FimAno = Data(31, 12, d1ano);
+		Data InicioAno = Data(01, 01, (d1ano++));
+		int intervalo1 = getPrecoFinal( d1, FimAno);
+		int intervalo2 = getPrecoFinal( InicioAno, d2);
+		return intervalo1 + intervalo2;
+
+	}
+	else {
+		int auxd1, auxd2;
+		auxd1 = (d1mes*100) + d1dia;
+		auxd2 = (d2mes*100) + d2dia;
+		for (int aux = auxd1 ; aux <= auxd2 ; aux++) {
+			if (aux <= limite)
+				dias100++;
+			if (aux <= limite2)
+				dias150++;
+			if (aux <= limite3)
+				dias100++;
+			if (aux <= limite4)
+				dias150++;
+		}
+	}
+	return dias100*getPrecoQuarto() + dias150*1.5*getPrecoQuarto();
 }
 
 /**
@@ -98,7 +148,7 @@ string Quarto::getRes() const
  */
 void Quarto::setRes()
 {
-	reservado = true;
+	reservado = true;  // falta ir ao ficheiro txt e mudar
 }
 
 /**
@@ -108,7 +158,7 @@ void Quarto::setRes()
  */
 ostream &operator << (ostream &os, Quarto &q1)
 {
-	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getPreco();
+	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getPrecoQuarto();
 	return os;
 }
 
@@ -118,7 +168,7 @@ ostream &operator << (ostream &os, Quarto &q1)
 string Quarto::getInformacao() const
 {
 	stringstream ss;
-	ss << " " << getTipo() << ", " << getLocal() << " " << getPreco();
+	ss << " " << getTipo() << ", " << getLocal() << " " << getPrecoQuarto();
 	return ss.str();
 }
 
@@ -164,6 +214,15 @@ int SalaReuniao::getPreco() const {
 	/* else if (capacidade > 50 ) {excecao demasiado}
 	 * else excecao invalido
 	 */
+}
+
+int SalaReuniao::getPrecoMes(Data d) const {
+	int mes = d.getMes();
+	if ((6 <= mes && mes <= 8) || mes == 12){
+		return getPreco()*1.5;
+	}
+	else
+		return getPreco();
 }
 
 /**

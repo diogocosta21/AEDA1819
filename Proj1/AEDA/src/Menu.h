@@ -17,14 +17,13 @@
 #include "FileReader.h"
 #include "Data.h"
 
-Data d1;
+Data setData();
 
 bool HotelMenu(Hotel *h);
 
 bool FazerReserva (Hotel *h);
 
 bool VerFicheiro (Hotel *h);
-
 
 
 #endif /* MENU_H_ */

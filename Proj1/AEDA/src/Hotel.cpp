@@ -274,7 +274,7 @@ void Hotel::printQuartosPorPreco() const
 		for(unsigned int i = m; i < v.size(); i++)
 		{
 			Quarto* q = v[i];
-			for(j = i; j >= m && q->getPreco() > v[j-m]->getPreco(); j -= m)
+			for(j = i; j >= m && q->getPrecoQuarto() > v[j-m]->getPrecoQuarto(); j -= m)
 			{
 				v[j] = v[j-m];
 			}

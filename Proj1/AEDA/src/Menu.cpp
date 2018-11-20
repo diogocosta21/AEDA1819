@@ -10,25 +10,30 @@
 
 using namespace std;
 
+Data setData()
+{
+	string d;
+	cout << "Data de hoje (dd-mm-aaaa): ";
+	cin >> d;
+	cin.clear();
+	cout << endl;
+	return Data(d);
+}
 
+static Data d = setData();
 
 bool HotelMenu(Hotel *h)
 {
 	unsigned int optionCM = 0;
 	bool flag = false;
-	string d;
-
-	cout << "Data de hoje(dd-mm-aaaa): ";
-	cin >> d;
-
-	d1 = Data(d);
 
 	while (!flag)
 	{
 
 		cout << "***********************" << endl;
 		cout << "|      Bem-vindo      |" << endl;
-		cout << "***********************" << endl << endl;
+		cout << "***********************" << endl;
+		cout << "Date : " << d.getDia() << "-" << d.getMes() << "-" << d.getAno() << endl << endl;
 
 
 		cout << "1 Fazer uma Reserva"     << endl;
@@ -79,9 +84,13 @@ bool HotelMenu(Hotel *h)
 
 							cout << "Tipo de quarto(simples ou duplo): ";
 							cin >> tipo;
+							cin.clear();
+							cout << endl;
 
 							cout << "Local do quarto(frente ou traseiras): ";
 							cin >> local;
+							cin.clear();
+							cout << endl;
 
 							h->addQuarto(tipo, local, res);
 
@@ -98,9 +107,13 @@ bool HotelMenu(Hotel *h)
 
 							cout << "Capacidade da sala: ";
 							cin >> capacidade;
+							cin.clear();
+							cout << endl;
 
 							cout << "Equipamento de video('sim' ou 'nao'): ";
 							cin >> vid;
+							cin.clear();
+							cout << endl;
 
 							if(vid == "sim")
 								video = true;
@@ -109,6 +122,8 @@ bool HotelMenu(Hotel *h)
 
 							cout << "Equipamento de audio('sim' ou 'nao'): ";
 							cin >> aud;
+							cin.clear();
+							cout << endl;
 
 							if(aud == "sim")
 								audio = true;
@@ -138,9 +153,13 @@ bool HotelMenu(Hotel *h)
 
 				cout << "Nome do funcionario: ";
 				cin >> nome;
+				cin.clear();
+				cout << endl;
 
 				cout << "Supervisor('sim' ou 'nao')? ";
 				cin >> sup;
+				cin.clear();
+				cout << endl;
 
 				if(sup == "sim")
 					supervisor = true;
@@ -148,8 +167,16 @@ bool HotelMenu(Hotel *h)
 					supervisor = false;
 
 				h->addFuncionario(nome, supervisor);
+
+				break;
+			}
+
+			case 5:
+			{
+				break;
 			}
 		}
+		break;
 	}
 	return true;
 }
@@ -160,14 +187,19 @@ bool FazerReserva (Hotel *h)
 	string nome;
 	unsigned int NIF;
 	unsigned int numRes;
-	string numDias;
+	int numDias;
 	string espaco;
 	int preco;
+	string d1, d2;
 
 	cout << "Nome? " << endl;
 	cin >> nome;
+	cin.clear();
+	cout << endl;
 	cout << "NIF? " << endl;
 	cin >> NIF;
+	cin.clear();
+	cout << endl;
 
 	for(unsigned int i = 0; i < h->getClientes().size(); i++)
 	{
@@ -183,33 +215,107 @@ bool FazerReserva (Hotel *h)
 		h->addCliente(nome, NIF, numRes);
 	}
 
+	cout << "Data de inicio da reserva (dd-mm-aaaa): ";
+	cin >> d1;
+	Data data1 = Data(d1);
+	while (data1.validateData() == false)
+	{
+		cout << "A data introduzida nao e valida, por favor introduza uma data valida (formato dd-mm-aaaa): ";
+		cin >> d1;
+		cin.clear();
+		cin.ignore(10000, '\n');
+		data1 = Data (d1);
+	}
+
+	cout << "Data de fim da reserva (dd-mm-aaaa): ";
+	cin >> d2;
+	Data data2 = Data(d2);
+	while (data1.validateData() == false)
+	{
+		cout << "A data introduzida nao e valida, por favor introduza uma data valida (formato dd-mm-aaaa): ";
+		cin >> d2;
+		cin.clear();
+		cin.ignore(10000, '\n');
+		data2 = Data (d2);
+	}
+
+	int data1valor, data2valor;
+	data1valor = data1.valorData();
+	data2valor = data2.valorData();
+
+	while (data2valor < data1valor) {
+		cout << "A data de fim e anterior a data de inicio da reserva. Que data pretende editar? ('inicio' ou 'fim'): ";
+		string aux;
+		cin >> aux;
+		cin.clear();
+		cin.ignore(10000, '\n');
+		if (aux == "inicio") {
+			cout << "Data de inicio da reserva (dd-mm-aaaa): ";
+			cin >> d1;
+			Data data1 = Data(d1);
+			while (data1.validateData() == false)
+			{
+				cout << "A data introduzida nao e valida, por favor introduza uma data valida (formato dd-mm-aaaa): ";
+				cin >> d1;
+				cin.clear();
+				cin.ignore(10000, '\n');
+				data1 = Data (d1);
+			}
+			data1valor = data1.valorData();
+		}
+		else if (aux == "fim") {
+			cout << "Data de fim da reserva (dd-mm-aaaa): ";
+			cin >> d2;
+			Data data2 = Data(d2);
+			while (data2.validateData() == false)
+			{
+				cout << "A data introduzida nao e valida, por favor introduza uma data valida (formato dd-mm-aaaa): ";
+				cin >> d2;
+				cin.clear();
+				cin.ignore(10000, '\n');
+				data2 = Data (d2);
+			}
+			data2valor = data2.valorData();
+		}
+		else {
+			try {
+				throw OpcaoInvalidast(aux);
+			}
+			catch (OpcaoInvalidast &e)
+			{
+				cout << e.getOpcao() << " nao e uma opcao valida" << endl << endl;
+			}
+		}
+	}
+
 	cout << "Tipo de reserva que pretende efetuar(quarto ou sala de reuniao): ";
 	cin >> espaco;
 
+
 	if(espaco == "quarto")
 	{
-		cout << "Numero de dias que pretende estar hospedado: " << endl;
-		cin >> numDias;
-		cout << endl;
+
 
 		cout << "Quartos do hotel: " << endl << endl;
 		h->printQuartosPorPreco();
 		cout << endl << "Numero do quarto que pretende reservar: ";
 		unsigned int i;
 		cin >> i;
+		cin.clear();
+		cout << endl;
 
 		while(h->getQuartos()[i-1]->getRes() == "Reservado")
 		{
 			cout << "O quarto escolhido encontra-se reservado. Por favor escolher outro: ";
 			cin >> i;
+			cin.clear();
+			cout << endl;
 		}
+
 
 		cout << "Preco a pagar: ";
 
-		preco = h->getQuartos()[i-1]->getPreco();
-		if((d1.getMes() >= 6 && d1.getMes() <= 8) || d1.getMes() == 12)
-			preco = preco * 1.50;
-		preco = preco * stoi(numDias.c_str());
+		preco = h->getQuartos()[i-1]->getPrecoFinal(d1, d2);
 
 		cout << preco;
 
@@ -227,19 +333,23 @@ bool FazerReserva (Hotel *h)
 			cout << endl << "Numero da sala de reuniao que pretende reservar: ";
 			unsigned int i;
 			cin >> i;
+			cin.clear();
+			cout << endl;
 
 			while(h->getSalasReuniao()[i-1]->getRes() == "Reservado")
 			{
 				cout << "A sala de reuniao escolhida encontra-se reservada. Por favor escolher outra: ";
 				cin >> i;
+				cin.clear();
+				cout << endl;
 			}
 
 			cout << "Preco a pagar: ";
 
-			preco = h->getSalasReuniao()[i-1]->getPreco();
-			if((d1.getMes() >= 6 && d1.getMes() <= 8) || d1.getMes() == 12)
-				preco = preco * 1.50;
-			preco = preco * stoi(numDias.c_str());
+			int precoDia;
+			precoDia = h->getQuartos()[i-1]->getPrecoMes(d);
+
+			preco = precoDia * numDias;
 
 			cout << preco;
 
