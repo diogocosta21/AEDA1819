@@ -1,0 +1,1 @@
+1, 50, Sem equipamento de video, Sem equipamento de audio, Nao reservada;

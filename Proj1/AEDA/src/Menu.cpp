@@ -85,11 +85,13 @@ bool HotelMenu(Hotel *h)
 							cout << "Tipo de quarto(simples ou duplo): ";
 							cin >> tipo;
 							cin.clear();
+							cin.ignore(10000,'\n');
 							cout << endl;
 
 							cout << "Local do quarto(frente ou traseiras): ";
 							cin >> local;
 							cin.clear();
+							cin.ignore(10000,'\n');
 							cout << endl;
 
 							h->addQuarto(tipo, local, res);
@@ -108,11 +110,13 @@ bool HotelMenu(Hotel *h)
 							cout << "Capacidade da sala: ";
 							cin >> capacidade;
 							cin.clear();
+							cin.ignore(10000,'\n');
 							cout << endl;
 
 							cout << "Equipamento de video('sim' ou 'nao'): ";
 							cin >> vid;
 							cin.clear();
+							cin.ignore(10000,'\n');
 							cout << endl;
 
 							if(vid == "sim")
@@ -123,6 +127,7 @@ bool HotelMenu(Hotel *h)
 							cout << "Equipamento de audio('sim' ou 'nao'): ";
 							cin >> aud;
 							cin.clear();
+							cin.ignore(10000,'\n');
 							cout << endl;
 
 							if(aud == "sim")
@@ -137,9 +142,11 @@ bool HotelMenu(Hotel *h)
 
 						case 3:
 						{
-							flag2 = true;
+							flag2=true;
 							break;
+
 						}
+
 					}
 				}
 				break;
@@ -154,11 +161,13 @@ bool HotelMenu(Hotel *h)
 				cout << "Nome do funcionario: ";
 				cin >> nome;
 				cin.clear();
+				cin.ignore(10000,'\n');
 				cout << endl;
 
 				cout << "Supervisor('sim' ou 'nao')? ";
 				cin >> sup;
 				cin.clear();
+				cin.ignore(10000,'\n');
 				cout << endl;
 
 				if(sup == "sim")
@@ -171,12 +180,18 @@ bool HotelMenu(Hotel *h)
 				break;
 			}
 
+			case 4:
+			{
+				VerFicheiro(h);
+				break;
+			}
+
 			case 5:
 			{
+				flag = true;
 				break;
 			}
 		}
-		break;
 	}
 	return true;
 }
@@ -195,10 +210,12 @@ bool FazerReserva (Hotel *h)
 	cout << "Nome? " << endl;
 	cin >> nome;
 	cin.clear();
+	cin.ignore(10000,'\n');
 	cout << endl;
 	cout << "NIF? " << endl;
 	cin >> NIF;
 	cin.clear();
+	cin.ignore(10000,'\n');
 	cout << endl;
 
 	for(unsigned int i = 0; i < h->getClientes().size(); i++)
@@ -302,6 +319,7 @@ bool FazerReserva (Hotel *h)
 		unsigned int i;
 		cin >> i;
 		cin.clear();
+		cin.ignore(10000,'\n');
 		cout << endl;
 
 		while(h->getQuartos()[i-1]->getRes() == "Reservado")
@@ -329,7 +347,7 @@ bool FazerReserva (Hotel *h)
 	if(espaco == "sala de reuniao")
 		{
 			cout << "Salas de reuniao: " << endl << endl;
-			h->printSalasReuniaoPorPreco();
+			h->printSalasReuniaoNaoReservadasPorPreco();
 			cout << endl << "Numero da sala de reuniao que pretende reservar: ";
 			unsigned int i;
 			cin >> i;
@@ -377,7 +395,7 @@ bool VerFicheiro (Hotel *h)
 		cout << "2 Funcionarios" << endl;
 		cout << "3 Espacos" << endl;
 		cout << "4 Back" << endl;
-		cout << "Insert the desired option: ";
+		cout << "Insira a opcao desejada: ";
 		cin >> optionVFM;
 		cin.clear();
 		cin.ignore(10000, '\n');
@@ -454,9 +472,9 @@ bool VerFicheiro (Hotel *h)
 					cout << "*************************" << endl << endl;
 
 					cout << "1 Ver quartos" << endl;
-					cout << "2 Ver quartos por preco" << endl;
+					cout << "2 Ver quartos nao reservados por preco" << endl;
 					cout << "3 Ver salas de reuniao" << endl;
-					cout << "4 Ver salas de reuniao por preco" << endl;
+					cout << "4 Ver salas de reuniao nao reservadas por preco" << endl;
 					cout << "5 Back" << endl;
 					cout << "Insert the desired option: " ;
 					cin >> optionVFM3;
@@ -467,29 +485,29 @@ bool VerFicheiro (Hotel *h)
 					{
 						case 1:
 						{
+							cout << endl;
 							h->printQuartos();
-
 							break;
 						}
 
 						case 2:
 						{
-							h->printQuartosPorPreco();
-
+							cout << endl;
+							h->printQuartosNaoReservadosPorPreco();
 							break;
 						}
 
 						case 3:
 						{
+							cout << endl;
 							h->printSalasReuniao();
 
-							break;
 						}
 
 						case 4:
 						{
-							h->printSalasReuniaoPorPreco();
-
+							cout << endl;
+							h->printSalasReuniaoNaoReservadasPorPreco();
 							break;
 						}
 
@@ -504,7 +522,7 @@ bool VerFicheiro (Hotel *h)
 				break;
 			}
 
-			case 5:
+			case 4:
 				flag = true;
 
 		}

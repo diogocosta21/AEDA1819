@@ -64,8 +64,12 @@ public:
 	void printFuncionarios() const;
 	void printQuartos() const;
 	void printQuartosPorPreco() const;
+	void printQuartosNaoReservados() const;
+	void printQuartosNaoReservadosPorPreco() const;
 	void printSalasReuniao() const;
 	void printSalasReuniaoPorPreco() const;
+	void printSalasReuniaoNaoReservadas() const;
+	void printSalasReuniaoNaoReservadasPorPreco() const;
 };
 
 

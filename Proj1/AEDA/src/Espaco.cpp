@@ -282,7 +282,7 @@ void SalaReuniao::setRes()
  */
 ostream &operator << (ostream &os, SalaReuniao &sr1)
 {
-	os << sr1.getCapacidade() << ", " << sr1.getVideo() << ", " << sr1.getAudio() << ", " << sr1.getPreco();
+	os << sr1.getCapacidade() << ", " << sr1.getVideo() << ", " << sr1.getAudio() << ", " << sr1.getRes();
 	return os;
 }
 
@@ -293,7 +293,7 @@ ostream &operator << (ostream &os, SalaReuniao &sr1)
 string SalaReuniao::getInformacao() const
 {
 	stringstream ss;
-	ss << " " << getCapacidade() << " " << getVideo() << " " << getAudio() << " " << getPreco();
+	ss << " " << getCapacidade() << " - " << getVideo() << " - " << getAudio() << " - " << getRes() << " - " << getPreco();
 	return ss.str();
 }
 

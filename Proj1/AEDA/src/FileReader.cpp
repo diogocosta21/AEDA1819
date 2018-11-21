@@ -110,10 +110,8 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 	for (unsigned int i = 0; i < lines.size(); i++)
 	{
 		string line = lines[i];
-		string nome, capacidade, vid, aud, reserv;
+		string capacidade, vid, aud, reserv;
 
-		line = line.substr(line.find(',') + 2);
-		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		capacidade = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
