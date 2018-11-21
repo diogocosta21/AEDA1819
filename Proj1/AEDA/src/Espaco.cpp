@@ -138,9 +138,9 @@ int Quarto::getPrecoFinal(Data d1, Data d2) const {
 string Quarto::getRes() const
 {
 	if(reservado)
-		return "Reservado";
+		return "reservado";
 	else
-		return "Nao reservado";
+		return "nao reservado";
 }
 
 /**
@@ -158,7 +158,7 @@ void Quarto::setRes()
  */
 ostream &operator << (ostream &os, Quarto &q1)
 {
-	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getPrecoQuarto();
+	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getRes();
 	return os;
 }
 
@@ -168,7 +168,7 @@ ostream &operator << (ostream &os, Quarto &q1)
 string Quarto::getInformacao() const
 {
 	stringstream ss;
-	ss << " " << getTipo() << ", " << getLocal() << " " << getPrecoQuarto();
+	ss << getTipo() << ", " << getLocal() << ", " << getRes();
 	return ss.str();
 }
 
@@ -262,9 +262,9 @@ int SalaReuniao::getCapacidade() const {
 string SalaReuniao::getRes() const
 {
 	if(reservado)
-		return "Reservada";
+		return "reservada";
 	else
-		return "Nao reservada";
+		return "nao reservada";
 }
 
 /**
@@ -293,8 +293,7 @@ ostream &operator << (ostream &os, SalaReuniao &sr1)
 string SalaReuniao::getInformacao() const
 {
 	stringstream ss;
-	ss << " " << getCapacidade() << " - " << getVideo() << " - " << getAudio() << " - " << getRes() << " - " << getPreco();
+	ss << " " << getCapacidade() << " -" << getVideo() << " -" << getAudio() << " -" << getRes() << " -" << getPreco();
 	return ss.str();
 }
-
 

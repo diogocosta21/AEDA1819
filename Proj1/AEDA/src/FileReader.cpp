@@ -8,6 +8,7 @@
 #include "FileReader.h"
 
 #include <iostream>
+#include <algorithm>
 
 
 using namespace std;
@@ -155,19 +156,11 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 	for (unsigned int i = 0; i < lines.size(); i++)
 	{
 		string line = lines [i];
-		string nome, NIF, sup;
+		string nome;
 
 		line = line.substr(line.find(',') + 2);
 		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
-		NIF = line.substr(0 ,line.find(','));
-		line = line.substr(line.find(',') + 2);
-		sup = line.substr(0 ,line.find(';'));
-
-		bool supervisor = false;
-		if (sup == "supervisor") {
-			supervisor = true;
-		}
 
 		Funcionario *f = new Funcionario (nome);
 		funcionarios.push_back(f);
@@ -175,6 +168,34 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 	}
 
 	return funcionarios;
+}
+
+/**
+ * Reads information from the reservation.
+ * @param file reservations' file.
+ */
+vector <Supervisor * > FileReader::readSupervisores(string file)
+{
+	vector <Supervisor *> supervisores;
+
+	vector<string> lines = FileReader::readLines(file);
+
+	for (unsigned int i = 0; i < lines.size(); i++)
+	{
+		string line = lines [i];
+		string nome, numQuartos;
+
+		line = line.substr(line.find(',') + 2);
+		nome = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
+		numQuartos = line.substr(0 ,line.find(';'));
+
+		Supervisor *s = new Supervisor (nome, stoi(numQuartos.c_str()));
+		supervisores.push_back(s);
+
+	}
+
+	return supervisores;
 }
 
 

@@ -25,5 +25,6 @@ bool FazerReserva (Hotel *h);
 
 bool VerFicheiro (Hotel *h);
 
+bool CriarEspaco(Hotel *h);
 
 #endif /* MENU_H_ */

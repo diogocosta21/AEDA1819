@@ -29,10 +29,10 @@ private:
 	static vector<string> readLines(string file);
 public:
 	static vector<Cliente *> readClientes(string file);
-	//static vector<OccasionalClient *> readOccasionalClients(string file);
 	static vector<Quarto *> readQuartos(string file);
 	static vector<SalaReuniao *> readSalasReuniao(string file);
-	static vector <Funcionario *> readFuncionarios (string file);
+	static vector<Funcionario *> readFuncionarios (string file);
+	static vector<Supervisor *> readSupervisores (string file);
 };
 
 

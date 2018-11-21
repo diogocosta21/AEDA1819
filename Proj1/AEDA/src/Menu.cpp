@@ -57,98 +57,7 @@ bool HotelMenu(Hotel *h)
 
 			case 2:
 			{
-				unsigned int optionCM2 = 0;
-				bool flag2 = false;
-				while (!flag2)
-				{
-					cout << "***********************" << endl;
-					cout << "|   Criar um espaço   |" << endl;
-					cout << "***********************" << endl << endl;
-
-					cout << "1 Criar um quarto" << endl;
-					cout << "2 Criar uma sala de reuniao" << endl;
-					cout << "3 Voltar" << endl;
-					cout << "Inserir a opcao desejada: ";
-
-					cin >> optionCM2;
-					cin.clear();
-					cin.ignore(10000,'\n');
-
-					switch (optionCM2)
-					{
-						case 1:
-						{
-							string tipo;
-							string local;
-							bool res = false;
-
-							cout << "Tipo de quarto(simples ou duplo): ";
-							cin >> tipo;
-							cin.clear();
-							cin.ignore(10000,'\n');
-							cout << endl;
-
-							cout << "Local do quarto(frente ou traseiras): ";
-							cin >> local;
-							cin.clear();
-							cin.ignore(10000,'\n');
-							cout << endl;
-
-							h->addQuarto(tipo, local, res);
-
-							break;
-						}
-
-						case 2:
-						{
-							int capacidade;
-							string vid, aud;
-							bool video;
-							bool audio;
-							bool res = false;
-
-							cout << "Capacidade da sala: ";
-							cin >> capacidade;
-							cin.clear();
-							cin.ignore(10000,'\n');
-							cout << endl;
-
-							cout << "Equipamento de video('sim' ou 'nao'): ";
-							cin >> vid;
-							cin.clear();
-							cin.ignore(10000,'\n');
-							cout << endl;
-
-							if(vid == "sim")
-								video = true;
-							else if(vid == "nao")
-								video = false;
-
-							cout << "Equipamento de audio('sim' ou 'nao'): ";
-							cin >> aud;
-							cin.clear();
-							cin.ignore(10000,'\n');
-							cout << endl;
-
-							if(aud == "sim")
-								audio = true;
-							else if(aud == "nao")
-								audio = false;
-
-							h->addSalaReuniao(capacidade, video, audio, res);
-
-							break;
-						}
-
-						case 3:
-						{
-							flag2=true;
-							break;
-
-						}
-
-					}
-				}
+				CriarEspaco (h);
 				break;
 			}
 
@@ -156,30 +65,39 @@ bool HotelMenu(Hotel *h)
 			{
 				string nome;
 				string sup;
-				bool supervisor;
-
-				cout << "Nome do funcionario: ";
-				cin >> nome;
-				cin.clear();
-				cin.ignore(10000,'\n');
-				cout << endl;
 
 				cout << "Supervisor('sim' ou 'nao')? ";
 				cin >> sup;
 				cin.clear();
-				cin.ignore(10000,'\n');
+				cin.ignore(10000, '\n');
 				cout << endl;
 
-				if(sup == "sim")
-					supervisor = true;
-				else if(sup == "nao")
-					supervisor = false;
+				if(sup == "nao")
+				{
+					cout << "Nome do funcionario: ";
+					cin >> nome;
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << endl;
 
-				h->addFuncionario(nome, supervisor);
+					h->addFuncionario(nome);
+				}
+				else if(sup == "sim")
+				{
+					int numQuartos;
 
+					cout << "Nome do funcionario: ";
+					cin >> nome;
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << endl;
+
+					numQuartos = 0;
+
+					h->addSupervisor(nome, numQuartos);
+				}
 				break;
 			}
-
 			case 4:
 			{
 				VerFicheiro(h);
@@ -210,12 +128,12 @@ bool FazerReserva (Hotel *h)
 	cout << "Nome? " << endl;
 	cin >> nome;
 	cin.clear();
-	cin.ignore(10000,'\n');
+	cin.ignore(10000, '\n');
 	cout << endl;
 	cout << "NIF? " << endl;
 	cin >> NIF;
 	cin.clear();
-	cin.ignore(10000,'\n');
+	cin.ignore(10000, '\n');
 	cout << endl;
 
 	for(unsigned int i = 0; i < h->getClientes().size(); i++)
@@ -319,7 +237,7 @@ bool FazerReserva (Hotel *h)
 		unsigned int i;
 		cin >> i;
 		cin.clear();
-		cin.ignore(10000,'\n');
+		cin.ignore(10000, '\n');
 		cout << endl;
 
 		while(h->getQuartos()[i-1]->getRes() == "Reservado")
@@ -395,7 +313,7 @@ bool VerFicheiro (Hotel *h)
 		cout << "2 Funcionarios" << endl;
 		cout << "3 Espacos" << endl;
 		cout << "4 Back" << endl;
-		cout << "Insira a opcao desejada: ";
+		cout << "Inserir a opcao desejada: ";
 		cin >> optionVFM;
 		cin.clear();
 		cin.ignore(10000, '\n');
@@ -453,8 +371,18 @@ bool VerFicheiro (Hotel *h)
 
 			case 2:
 			{
+				string s;
 				cout <<endl;
-				h->printFuncionarios();
+				cout << "Escolher ficheiro('funcionarios' ou 'supervisores'): ";
+				cin >> s;
+				if (s == "funcionarios")
+				{
+					h->printFuncionarios();
+					h->printSupervisores();
+				}
+				else if(s == "supervisores")
+					h->printSupervisores();
+
 				cout << endl;
 				break;
 			}
@@ -487,6 +415,7 @@ bool VerFicheiro (Hotel *h)
 						{
 							cout << endl;
 							h->printQuartos();
+
 							break;
 						}
 
@@ -494,6 +423,7 @@ bool VerFicheiro (Hotel *h)
 						{
 							cout << endl;
 							h->printQuartosNaoReservadosPorPreco();
+
 							break;
 						}
 
@@ -502,12 +432,14 @@ bool VerFicheiro (Hotel *h)
 							cout << endl;
 							h->printSalasReuniao();
 
+							break;
 						}
 
 						case 4:
 						{
 							cout << endl;
 							h->printSalasReuniaoNaoReservadasPorPreco();
+
 							break;
 						}
 
@@ -529,5 +461,95 @@ bool VerFicheiro (Hotel *h)
 	}
 
 	return true;
+}
+
+
+bool CriarEspaco (Hotel *h)
+{
+	unsigned int optionCM2 = 0;
+					bool flag2 = false;
+					while (!flag2)
+					{
+						cout << "***********************" << endl;
+						cout << "|   Criar um espaço   |" << endl;
+						cout << "***********************" << endl << endl;
+
+						cout << "1 Criar um quarto" << endl;
+						cout << "2 Criar uma sala de reuniao" << endl;
+						cout << "3 Voltar" << endl;
+						cout << "Inserir a opcao desejada: ";
+
+						cin >> optionCM2;
+						cin.clear();
+						cin.ignore(10000,'\n');
+
+						switch (optionCM2)
+						{
+							case 1:
+							{
+								string tipo;
+								string local;
+								bool res = false;
+
+								cout << "Tipo de quarto(simples ou duplo): ";
+								getline(cin, tipo);
+								cin.clear();
+
+								cout << "Local do quarto(frente ou traseiras): ";
+								getline(cin, local);
+								cin.clear();
+
+								h->addQuarto(tipo, local, res);
+
+								break;
+							}
+
+							case 2:
+							{
+								int capacidade;
+								string vid, aud;
+								bool video;
+								bool audio;
+								bool res = false;
+
+								cout << "Capacidade da sala: ";
+								cin >> capacidade;
+								cin.clear();
+								cin.ignore(10000, '\n');
+								cout << endl;
+
+								cout << "Equipamento de video('sim' ou 'nao'): ";
+								cin >> vid;
+								cin.clear();
+								cin.ignore(10000, '\n');
+								cout << endl;
+
+								if(vid == "sim")
+									video = true;
+								else if(vid == "nao")
+									video = false;
+
+								cout << "Equipamento de audio('sim' ou 'nao'): ";
+								cin >> aud;
+								cin.clear();
+								cin.ignore(10000, '\n');
+								cout << endl;
+
+								if(aud == "sim")
+									audio = true;
+								else if(aud == "nao")
+									audio = false;
+
+								h->addSalaReuniao(capacidade, video, audio, res);
+
+								break;
+							}
+
+							case 3:
+								flag2 = true;
+						}
+					}
+
+					return true;
 }
 

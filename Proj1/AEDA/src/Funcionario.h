@@ -24,6 +24,7 @@ public:
 	Funcionario(string nome);
 	string getNome() const;
 	string getInformacao() const;
+	friend ostream &operator << (ostream &os, Funcionario &f1);
 };
 
 class Supervisor: public Funcionario {
@@ -35,6 +36,7 @@ public:
 	Supervisor(string nome, unsigned int numQuartos);
 	unsigned int getNumQuartos() const;
 	string getInformacao() const;
+	friend ostream &operator << (ostream &os, Supervisor &s1);
 };
 
 

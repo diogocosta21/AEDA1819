@@ -38,6 +38,17 @@ string Funcionario::getInformacao() const
 }
 
 /**
+ * Escreve para ofstream a informacao do funcionario no formato usado no ficheiro de texto
+ * os - ostream onde é guardada informacao
+ * f1 - Funcionario cuja informacao é lida
+ */
+ostream &operator << (ostream &os, Funcionario &f1)
+{
+	os << f1.getNome();
+	return os;
+}
+
+/**
  * Constructor
  * nome - Nome do supervisor
  * numQuartos - Numero de quartos da responsabilidde do supervisor
@@ -64,6 +75,17 @@ string Supervisor::getInformacao() const
 	stringstream ss;
 	ss << " " << getNome() << ", " << getNumQuartos();
 	return ss.str();
+}
+
+/**
+ * Escreve para ofstream a informacao do supervisor no formato usado no ficheiro de texto
+ * os - ostream onde é guardada informacao
+ * f1 - Supervisor cuja informacao é lida
+ */
+ostream &operator << (ostream &os, Supervisor &s1)
+{
+	os << s1.getNome() << ", " << s1.getNumQuartos();
+	return os;
 }
 
 

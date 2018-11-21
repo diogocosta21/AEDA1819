@@ -31,6 +31,10 @@ private:
 	 */
 	vector<Funcionario *> funcionarios;
 	/**
+	 * Vector com supervisores do hotel
+	 */
+	vector<Supervisor *> supervisores;
+	/**
 	 * Vector com quartos do hotel
 	 */
 	vector<Quarto *> quartos;
@@ -47,21 +51,26 @@ public:
 	virtual ~Hotel();
 	void exportClientes(string file);
 	void exportFuncionarios(string file);
+	void exportSupervisores(string file);
 	void exportQuartos(string file);
 	void exportSalasReuniao(string file);
 	void addCliente(string nome, int NIF, unsigned int numRes);
-	void addFuncionario(string nome, bool supervisor);
+	void addFuncionario(string nome);
+	void addSupervisor(string nome, int numQuartos);
 	void addQuarto(string tipo, string lugar, bool res);
 	void addSalaReuniao(int capacidade, bool video, bool audio, bool res);
 	void removeCliente(string nome);
+	void setFuncionario(Funcionario func);
 	vector<Cliente *> getClientes() const;
 	vector<Funcionario *> getFuncionarios() const;
+	vector<Supervisor *> getSupervisores() const;
 	vector<Quarto *> getQuartos() const;
 	vector<SalaReuniao *> getSalasReuniao() const;
 	Data getData() const;
 	void printClientes() const;
 	void printClientesByNIF() const;
 	void printFuncionarios() const;
+	void printSupervisores() const;
 	void printQuartos() const;
 	void printQuartosPorPreco() const;
 	void printQuartosNaoReservados() const;

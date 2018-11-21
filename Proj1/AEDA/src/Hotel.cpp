@@ -41,7 +41,7 @@ void Hotel::exportClientes(string file)
 
 	for(unsigned int i = 0; i < clientes.size(); i++)
 	{
-		os << *clientes[i] << endl;
+		os << *clientes[i] << ";" << endl;
 	}
 
 	os.close();
@@ -59,7 +59,24 @@ void Hotel::exportFuncionarios(string file)
 
 	for(unsigned int i = 0; i < funcionarios.size(); i++)
 	{
-		//os << *funcionarios[i] << endl;
+		os << *funcionarios[i] << ";" << endl;
+	}
+
+	os.close();
+}
+
+/**
+ * Exporta supervisores para ficheiro de texto
+ * file - ficheiro que guarda informacao dos funcionarios
+ */
+void Hotel::exportSupervisores(string file)
+{
+	ofstream os;
+	os.open(file.c_str());
+
+	for(unsigned int i = 0; i < supervisores.size(); i++)
+	{
+		os << *supervisores[i] << ";" << endl;
 	}
 
 	os.close();
@@ -76,7 +93,7 @@ void Hotel::exportQuartos(string file)
 
 	for(unsigned int i = 0; i < quartos.size(); i++)
 	{
-		os << *quartos[i] << endl;
+		os << *quartos[i] << ";" << endl;
 	}
 
 	os.close();
@@ -93,7 +110,7 @@ void Hotel::exportSalasReuniao(string file)
 
 	for(unsigned int i = 0; i < salasreuniao.size(); i++)
 	{
-		os << *salasreuniao[i] << endl;
+		os << *salasreuniao[i] << ";" << endl;
 	}
 
 	os.close();
@@ -113,12 +130,21 @@ void Hotel::addCliente(string nome, int NIF, unsigned int numRes)
 /**
  * Adiciona funcionario ao vetor de funcionarios
  * nome - Nome do funcionario
- * supervisor - Verdade se o funcionario for supervisor
  */
-void Hotel::addFuncionario(string nome, bool supervisor)
+void Hotel::addFuncionario(string nome)
 {
 	Funcionario * func = new Funcionario(nome);
 	funcionarios.push_back(func);
+}
+
+/**
+ * Adiciona supervisor ao vetor de supervisores
+ * nome - Nome do supervisor
+ */
+void Hotel::addSupervisor(string nome, int numQuartos)
+{
+	Supervisor * sup = new Supervisor(nome, numQuartos);
+	supervisores.push_back(sup);
 }
 
 /**
@@ -173,6 +199,14 @@ vector<Cliente *> Hotel::getClientes() const
 vector<Funcionario *> Hotel::getFuncionarios() const
 {
 	return funcionarios;
+}
+
+/**
+ * Retorna vector dos supervisores
+ */
+vector<Supervisor *> Hotel::getSupervisores() const
+{
+	return supervisores;
 }
 
 /**
@@ -247,6 +281,17 @@ void Hotel::printFuncionarios() const
 }
 
 /**
+ * Imprime informacao dos supervisores
+ */
+void Hotel::printSupervisores() const
+{
+	for(unsigned int i = 0; i < supervisores.size(); i++)
+	{
+		cout << supervisores[i]->getInformacao() << endl;
+	}
+}
+
+/**
  * Imprime informacao dos quartos
  */
 void Hotel::printQuartos() const
@@ -293,8 +338,7 @@ void Hotel::printQuartosPorPreco() const
 /**
  * Imprime os quartos nao reservados
  */
-
-void Hotel::printQuartosNaoReservados() const
+ void Hotel::printQuartosNaoReservados() const
 {
 	vector<Quarto *> v;
 	unsigned int k = 1;
@@ -303,26 +347,21 @@ void Hotel::printQuartosNaoReservados() const
 		if (quartos[i]->getRes() == "Nao Reservado")
 			v.push_back(quartos[i]);
 	}
-
-	for(unsigned int i = 0; i < v.size(); i++)
+ 	for(unsigned int i = 0; i < v.size(); i++)
 	{
 		cout << k << " - ";
 		cout << v[i]->getInformacao() << endl;
 		k++;
 	}
 }
-
-/**
+ /**
  * Imprime os quartos nao reservados por preco
  */
-
-void Hotel::printQuartosNaoReservadosPorPreco() const {
-
-	vector<Quarto *> v = quartos;
+ void Hotel::printQuartosNaoReservadosPorPreco() const {
+ 	vector<Quarto *> v = quartos;
 	unsigned int j;
 	unsigned int k = 1;
-
-	for(unsigned int m = v.size()/2; m > 0; m /= 2)
+ 	for(unsigned int m = v.size()/2; m > 0; m /= 2)
 	{
 		for(unsigned int i = m; i < v.size(); i++)
 		{
@@ -333,22 +372,20 @@ void Hotel::printQuartosNaoReservadosPorPreco() const {
 			v[j] = q;
 		}
 	}
-
-	vector <Quarto *> aux;
-
-	for (unsigned int i = 0; i < v.size() ; i++)
+ 	vector <Quarto *> aux;
+ 	for (unsigned int i = 0; i < v.size() ; i++)
 	{
 		if (v[i]->getRes() == "Nao Reservado")
 				aux.push_back(v[i]);
 	}
-
-	for(unsigned int i = 0; i < aux.size(); i++)
+ 	for(unsigned int i = 0; i < aux.size(); i++)
 	{
 		cout << k << " - ";
 		cout << aux[i]->getInformacao() << endl;
 		k++;
 	}
 }
+
 
 /**
  * Imprime informacao das salas de reuniao
@@ -403,8 +440,7 @@ void Hotel::printSalasReuniaoNaoReservadas() const
 		if (salasreuniao[i]->getRes() == "Nao Reservado")
 			v.push_back(salasreuniao[i]);
 	}
-
-	for(unsigned int i = 0; i < v.size(); i++)
+ 	for(unsigned int i = 0; i < v.size(); i++)
 	{
 		cout << k << " - ";
 		cout << v[i]->getInformacao() << endl;
@@ -413,15 +449,11 @@ void Hotel::printSalasReuniaoNaoReservadas() const
 }
 
 
-
-
 void Hotel::printSalasReuniaoNaoReservadasPorPreco() const {
-
-	vector<SalaReuniao *> v = salasreuniao;
+ 	vector<SalaReuniao *> v = salasreuniao;
 	unsigned int j;
 	unsigned int k = 1;
-
-	for(unsigned int m = v.size()/2; m > 0; m /= 2)
+ 	for(unsigned int m = v.size()/2; m > 0; m /= 2)
 	{
 		for(unsigned int i = m; i < v.size(); i++)
 		{
@@ -433,16 +465,13 @@ void Hotel::printSalasReuniaoNaoReservadasPorPreco() const {
 			v[j] = q;
 		}
 	}
-
-	vector <SalaReuniao *> aux;
-
-	for (unsigned int i = 0; i < v.size() ; i++)
+ 	vector <SalaReuniao *> aux;
+ 	for (unsigned int i = 0; i < v.size() ; i++)
 	{
 		if (v[i]->getRes() == "Nao Reservado")
 				aux.push_back(v[i]);
 	}
-
-	for(unsigned int i = 0; i < aux.size(); i++)
+ 	for(unsigned int i = 0; i < aux.size(); i++)
 	{
 		cout << k << " - ";
 		cout << aux[i]->getInformacao() << endl;
