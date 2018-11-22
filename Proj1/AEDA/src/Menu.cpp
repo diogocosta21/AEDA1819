@@ -253,11 +253,11 @@ bool FazerReserva (Hotel *h)
 
 		preco = h->getQuartos()[i-1]->getPrecoFinal(d1, d2);
 
-		cout << preco;
+		cout << preco << endl << endl;
 
 		h->getQuartos()[i-1]->setRes();
 
-		cout << "Reserva finalizada";
+		cout << "Reserva finalizada" << endl << endl;
 
 		return true;
 	}
@@ -287,11 +287,11 @@ bool FazerReserva (Hotel *h)
 
 			preco = precoDia * numDias;
 
-			cout << preco;
+			cout << preco << endl << endl;
 
 			h->getSalasReuniao()[i-1]->setRes();
 
-			cout << "Reserva finalizada" << endl;
+			cout << "Reserva finalizada" << endl << endl;
 
 			return true;
 		}

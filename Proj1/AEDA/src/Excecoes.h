@@ -62,6 +62,35 @@ public:
 	}
 };
 
+/**
+ * Chamada quando tipo de quarto é invalido
+ */
+class TipoInvalido {
+	/**
+	 * @param string invalida inserida
+	 */
+	string tipo;
+public:
+	TipoInvalido(string tipo)
+	{
+		this->tipo = tipo;
+	}
+};
+
+class CapacidadeInvalida{
+	int capacidade;
+public:
+	CapacidadeInvalida(int capacidade) {
+		this->capacidade = capacidade;
+		if(capacidade > 50)
+		{
+			cout << "Capacidade tem de ser menor que 50" << endl;
+		}
+		else
+			cout << "Capacidade invalida" << endl;
+	}
+};
+
 
 
 #endif /* AEDA_SRC_EXCECOES_H_ */

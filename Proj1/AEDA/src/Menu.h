@@ -15,7 +15,6 @@
 
 #include "Hotel.h"
 #include "FileReader.h"
-#include "Data.h"
 
 Data setData();
 

@@ -71,13 +71,15 @@ int Quarto::getPrecoQuarto() const
 			return simples_preco;
 	}
 
-	else //(getTipo() == "duplo")
+	else if(getTipo() == "duplo")
 	{
 		if(getLocal() == "frente")
 			return duplo_preco * 1.25;
 		else if(getLocal() == "traseiras")
 			return duplo_preco;
 	}
+	else
+		throw TipoInvalido(tipo);
 }
 
 int Quarto::getPrecoMes(Data d) const {
@@ -209,11 +211,8 @@ int SalaReuniao::getPreco() const {
 		int aux = preco + acrescimos;
 		return aux;
 	}
-	else {return 0;}
-
-	/* else if (capacidade > 50 ) {excecao demasiado}
-	 * else excecao invalido
-	 */
+	else
+		throw CapacidadeInvalida(capacidade);
 }
 
 int SalaReuniao::getPrecoMes(Data d) const {

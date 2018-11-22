@@ -8,7 +8,6 @@
 #include "FileReader.h"
 
 #include <iostream>
-#include <algorithm>
 
 
 using namespace std;
@@ -49,7 +48,6 @@ vector<Cliente *> FileReader::readClientes(string file)
 		string line = lines[i];
 		string nome, NIF, numRes;
 
-		line = line.substr(line.find(',') + 2);
 		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		NIF = line.substr(0, line.find(','));
@@ -79,7 +77,6 @@ vector<Quarto *> FileReader::readQuartos(string file)
 		string line = lines[i];
 		string tipo, local, reserv;
 
-		line = line.substr(line.find(',') + 2);
 		tipo = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		local = line.substr(0, line.find(','));
@@ -112,8 +109,8 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 	{
 		string line = lines[i];
 		string capacidade, vid, aud, reserv;
+		int c;
 
-		line = line.substr(line.find(',') + 2);
 		capacidade = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		vid = line.substr(0, line.find(','));
@@ -135,8 +132,9 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 		if(aud == "com equipamento de audio")
 			audio = true;
 
+		c = stoi(capacidade.c_str());
 
-		SalaReuniao *s = new SalaReuniao (stoi(capacidade.c_str()), video, audio, reservado);
+		SalaReuniao *s = new SalaReuniao (c, video, audio, reservado);
 		salasreuniao.push_back(s);
 	}
 
@@ -158,7 +156,6 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 		string line = lines [i];
 		string nome;
 
-		line = line.substr(line.find(',') + 2);
 		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 
@@ -185,7 +182,6 @@ vector <Supervisor * > FileReader::readSupervisores(string file)
 		string line = lines [i];
 		string nome, numQuartos;
 
-		line = line.substr(line.find(',') + 2);
 		nome = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		numQuartos = line.substr(0 ,line.find(';'));
