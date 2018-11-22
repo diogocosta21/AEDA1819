@@ -12,7 +12,7 @@ using namespace std;
 
 /**
  * Constructor
- * nome- nome do funcionario
+ * @param nome- nome do funcionario
  */
 Funcionario::Funcionario(string nome)
 {
@@ -20,7 +20,7 @@ Funcionario::Funcionario(string nome)
 }
 
 /**
- * Retorna nome do funcionario
+ * @return nome do funcionario
  */
 string Funcionario::getNome() const
 {
@@ -28,7 +28,7 @@ string Funcionario::getNome() const
 }
 
 /**
- * Retorna string com nome e informacao se o funcionario é supervisor ou nao
+ * @return string com nome e informacao se o funcionario é supervisor ou nao
  */
 string Funcionario::getInformacao() const
 {
@@ -39,8 +39,8 @@ string Funcionario::getInformacao() const
 
 /**
  * Escreve para ofstream a informacao do funcionario no formato usado no ficheiro de texto
- * os - ostream onde é guardada informacao
- * f1 - Funcionario cuja informacao é lida
+ * @param os - ostream onde é guardada informacao
+ * @param f1 - Funcionario cuja informacao é lida
  */
 ostream &operator << (ostream &os, Funcionario &f1)
 {
@@ -50,8 +50,8 @@ ostream &operator << (ostream &os, Funcionario &f1)
 
 /**
  * Constructor
- * nome - Nome do supervisor
- * numQuartos - Numero de quartos da responsabilidde do supervisor
+ * @param nome - Nome do supervisor
+ * @param numQuartos - Numero de quartos da responsabilidde do supervisor
  */
 Supervisor::Supervisor(string nome, unsigned int numQuartos)
 {
@@ -60,7 +60,7 @@ Supervisor::Supervisor(string nome, unsigned int numQuartos)
 }
 
 /**
- * Retorna numero de quartos da responsabildade do supervisor
+ * @return numero de quartos da responsabildade do supervisor
  */
 unsigned int Supervisor::getNumQuartos() const
 {
@@ -68,7 +68,7 @@ unsigned int Supervisor::getNumQuartos() const
 }
 
 /**
- * Retorna string com nome e numero de quartos da responsabilidade do supervisor
+ * @return string com nome e numero de quartos da responsabilidade do supervisor
  */
 string Supervisor::getInformacao() const
 {
@@ -79,8 +79,8 @@ string Supervisor::getInformacao() const
 
 /**
  * Escreve para ofstream a informacao do supervisor no formato usado no ficheiro de texto
- * os - ostream onde é guardada informacao
- * f1 - Supervisor cuja informacao é lida
+ * @param os - ostream onde é guardada informacao
+ * @param f1 - Supervisor cuja informacao é lida
  */
 ostream &operator << (ostream &os, Supervisor &s1)
 {

@@ -13,8 +13,8 @@
 using namespace std;
 
 /**
- * Gets line from file and puts it in a vector.
- * @param file file to be read.
+ * Lê linha do ficheiro e poe num vetor
+ * @param file - ficheiro a ser lido
  */
 vector<string> FileReader::readLines(string file) {
 	vector<string> lines;
@@ -35,8 +35,8 @@ vector<string> FileReader::readLines(string file) {
 }
 
 /**
- * Reads information from registered clients.
- * @param file registered clients' file.
+ * Lê inforfmaçao dos clientes
+ * @param file - ficheiro dos clientes
  */
 vector<Cliente *> FileReader::readClientes(string file)
 {
@@ -64,8 +64,8 @@ vector<Cliente *> FileReader::readClientes(string file)
 
 
 /**
- * Reads information from suppliers.
- * @param file suppliers' file.
+ * Lê informaçao dos quartos
+ * @param file - ficheiro dos quartos
  */
 vector<Quarto *> FileReader::readQuartos(string file)
 {
@@ -76,19 +76,29 @@ vector<Quarto *> FileReader::readQuartos(string file)
 	{
 		string line = lines[i];
 		string tipo, local, reserv;
+		//vector<Data> data;
+		//Data d;
 
 		tipo = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		local = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		reserv = line.substr(line.find(';'));
+		/*while((line.find(",") + 2) != ';')
+		{
+			d = Data(line.substr(line.find(',')));
+			data.push_back(d);
+		}*/
 
-		bool reservado = false;
+		bool reservado;
 		if (reserv == "reservado"){
 			reservado = true;
 		}
 
-		Quarto *q = new Quarto (tipo, local, reservado);
+		if(reserv == "nao reservado")
+			reservado = false;
+
+		Quarto *q = new Quarto (tipo, local, reservado/*, data*/);
 		quartos.push_back (q);
 
 	}
@@ -97,8 +107,8 @@ vector<Quarto *> FileReader::readQuartos(string file)
 }
 
 /**
- * Reads information from offers.
- * @param file offers' file.
+ * Lê informaçao das salas de reuniao
+ * @param file - ficheiro das salas de reuniao
  */
 vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 {
@@ -125,11 +135,11 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 		}
 
 		bool video = false;
-		if(vid == "com equipamento de video")
+		if(vid == "Com equipamento de video")
 			video = true;
 
 		bool audio = false;
-		if(aud == "com equipamento de audio")
+		if(aud == "Com equipamento de audio")
 			audio = true;
 
 		c = stoi(capacidade.c_str());
@@ -142,8 +152,8 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 }
 
 /**
- * Reads information from the reservation.
- * @param file reservations' file.
+ * Lê informaçao dos funcionarios
+ * @param file - ficheiro dos funcionarios
  */
 vector <Funcionario * > FileReader::readFuncionarios(string file)
 {
@@ -156,8 +166,7 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 		string line = lines [i];
 		string nome;
 
-		nome = line.substr(0, line.find(','));
-		line = line.substr(line.find(',') + 2);
+		nome = line.substr(0, line.find(';'));
 
 		Funcionario *f = new Funcionario (nome);
 		funcionarios.push_back(f);
@@ -168,8 +177,8 @@ vector <Funcionario * > FileReader::readFuncionarios(string file)
 }
 
 /**
- * Reads information from the reservation.
- * @param file reservations' file.
+ * Lê informaçao dos supervisores
+ * @param file - ficheiro dos supervisores
  */
 vector <Supervisor * > FileReader::readSupervisores(string file)
 {

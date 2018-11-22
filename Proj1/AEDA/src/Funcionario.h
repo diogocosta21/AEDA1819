@@ -16,7 +16,7 @@ using namespace std;
 class Funcionario {
 protected:
 	/**
-	 * Nome do funcionario
+	 * @brief nome do funcionario
 	 */
 	string nome;
 public:
@@ -29,7 +29,7 @@ public:
 
 class Supervisor: public Funcionario {
 	/**
-	 * Numero de quartos da responsabilidade do supervisor
+	 * @breif numero de quartos da responsabilidade do supervisor
 	 */
 	unsigned int numQuartos;
 public:

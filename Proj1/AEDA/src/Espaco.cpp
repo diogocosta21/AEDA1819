@@ -12,7 +12,8 @@
 using namespace std;
 
 /**
- * Define funcionario responsavel pelo espaco
+ * Define supervisor responsavel pelo espaco
+ * @param supervisor responsavel
  */
 void Espaco::setSupervisor(Supervisor *sup)
 {
@@ -20,7 +21,7 @@ void Espaco::setSupervisor(Supervisor *sup)
 }
 
 /**
- * Retorna funcionario responsavel pelo espaco
+ * @return funcionario responsavel pelo espaco
  */
 Supervisor *Espaco::getSupervisor() const
 {
@@ -32,18 +33,19 @@ Supervisor *Espaco::getSupervisor() const
 
 /**
  * Constructor
- * t - Tipo de quarto
- * l - Local do quarto
+ * @param t - Tipo de quarto
+ * @param l - Local do quarto
  */
-Quarto::Quarto(string t, string l, bool res)
+Quarto::Quarto(string t, string l, bool res/*, vector<Data> r*/)
 {
 	tipo = t;
 	local = l;
 	reservado = res;
+	//this->r = r;
 }
 
 /**
- * Retorna o tipo de quarto
+ * @return o tipo de quarto
  */
 string Quarto::getTipo() const
 {
@@ -51,7 +53,7 @@ string Quarto::getTipo() const
 }
 
 /**
- * Retorna local do quarto
+ * @return local do quarto
  */
 string Quarto::getLocal() const
 {
@@ -59,7 +61,7 @@ string Quarto::getLocal() const
 }
 
 /**
- * Retrona preco do quarto
+ * @return preco do quarto
  */
 int Quarto::getPrecoQuarto() const
 {
@@ -82,6 +84,10 @@ int Quarto::getPrecoQuarto() const
 		throw TipoInvalido(tipo);
 }
 
+/**
+ * @return preco do quarto em determinados meses
+ * @param d - data da reserva
+ */
 int Quarto::getPrecoMes(Data d) const {
 	int mes = d.getMes();
 	if ((6 <= mes && mes <= 8) || mes == 12){
@@ -91,6 +97,11 @@ int Quarto::getPrecoMes(Data d) const {
 		return getPrecoQuarto();
 }
 
+/**
+ * @return preco da reserva
+ * @param d1 - dia inicial da reserva
+ * @param d2 - dia final da reserva
+ */
 int Quarto::getPrecoFinal(Data d1, Data d2) const {
 	int d1ano = d1.getAno();
 	int d1mes = d1.getMes();
@@ -135,15 +146,23 @@ int Quarto::getPrecoFinal(Data d1, Data d2) const {
 }
 
 /**
- * Retorna informacao sobre se o quarto está ou nao reservado
+ * @return informacao sobre se o quarto está ou nao reservado
  */
 string Quarto::getRes() const
 {
-	if(reservado)
+	if(reservado == true)
 		return "reservado";
-	else
+	else if(reservado == false)
 		return "nao reservado";
 }
+
+/**
+ * @return vector com as datas das reservas
+ */
+/*vector<Data> Quarto::getReservas() const
+{
+	return r;
+}*/
 
 /**
  * Poe quarto reservado
@@ -155,22 +174,30 @@ void Quarto::setRes()
 
 /**
  * Escreve para ofstream a informacao do quarto no formato usado no ficheiro de texto
- * os - ostream onde é guardada informacao
- * c1 - Quarto cuja informacao é lida
+ * @param os - ostream onde é guardada informacao
+ * @param c1 - Quarto cuja informacao é lida
  */
 ostream &operator << (ostream &os, Quarto &q1)
 {
-	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getRes();
+	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getRes(); /*<< ", " << q1.getReservas()*/
+	/*for(unsigned int i = 0; i < q1.getReservas().size(); i++)
+	{
+		os << ", " << q1.getReservas()[i] << " - " << q1.getReservas()[i+1];
+	}*/
 	return os;
 }
 
 /**
- * Retorna string com o local, o tipo e o preco do quarto
+ * @return string com o local, o tipo e o preco do quarto
  */
 string Quarto::getInformacao() const
 {
 	stringstream ss;
 	ss << getTipo() << ", " << getLocal() << ", " << getRes();
+	/*for(unsigned int i = 0; i < getReservas().size(); i++)
+	{
+		ss << ", " << getReservas()[i] << " - " << getReservas()[i+1];
+	}*/
 	return ss.str();
 }
 
@@ -178,9 +205,9 @@ string Quarto::getInformacao() const
 
 /**
  * Constructor
- * capacidade - Capacidade da sala de reuniao
- * video - verdade se a sala tem equipamento de video
- * audio - verdade se a sala tem equipamento de audio
+ * @param capacidade - Capacidade da sala de reuniao
+ * @param video - verdade se a sala tem equipamento de video
+ * @param audio - verdade se a sala tem equipamento de audio
  */
 SalaReuniao::SalaReuniao(int Capacidade, bool video, bool audio, bool reservado) : capacidade (Capacidade) {
 	this->video=video;
@@ -195,7 +222,7 @@ SalaReuniao::SalaReuniao(int Capacidade, bool video, bool audio, bool reservado)
 };
 
 /**
- * Retorna preco da sala de reuniao
+ * @return preco da sala de reuniao
  */
 int SalaReuniao::getPreco() const {
 
@@ -215,6 +242,11 @@ int SalaReuniao::getPreco() const {
 		throw CapacidadeInvalida(capacidade);
 }
 
+
+/**
+ * @return preco da sala em determinados meses
+ * @param d - data da reserva
+ */
 int SalaReuniao::getPrecoMes(Data d) const {
 	int mes = d.getMes();
 	if ((6 <= mes && mes <= 8) || mes == 12){
@@ -225,7 +257,7 @@ int SalaReuniao::getPrecoMes(Data d) const {
 }
 
 /**
- * Retorna string com informacao da existencia de equipamento de video na sala
+ * @return string com informacao da existencia de equipamento de video na sala
  */
 string SalaReuniao::getVideo() const
 {
@@ -237,7 +269,7 @@ string SalaReuniao::getVideo() const
 
 
 /**
- * Retorna string com informacao da existencia de equipamento de audio na sala
+ * @return string com informacao da existencia de equipamento de audio na sala
  */
 string SalaReuniao::getAudio() const
 {
@@ -249,14 +281,14 @@ string SalaReuniao::getAudio() const
 
 
 /**
- * Retorna capacidade da sala
+ * @return capacidade da sala
  */
 int SalaReuniao::getCapacidade() const {
 	return capacidade;
 }
 
 /**
- * Retorna informacao sobre se a sala de reuniao está ou nao reservada
+ * @return informacao sobre se a sala de reuniao está ou nao reservada
  */
 string SalaReuniao::getRes() const
 {
@@ -267,7 +299,7 @@ string SalaReuniao::getRes() const
 }
 
 /**
- * Poe sala de reuniao reservada
+ * @return sala de reuniao reservada
  */
 void SalaReuniao::setRes()
 {
@@ -276,8 +308,8 @@ void SalaReuniao::setRes()
 
 /**
  * Escreve para ofstream a informacao da sala de reuniao no formato usado no ficheiro de texto
- * os - ostream onde é guardada informacao
- * c1 - Sala de informacao cuja informacao é lida
+ * @param os - ostream onde é guardada informacao
+ * @param c1 - Sala de informacao cuja informacao é lida
  */
 ostream &operator << (ostream &os, SalaReuniao &sr1)
 {
@@ -287,7 +319,7 @@ ostream &operator << (ostream &os, SalaReuniao &sr1)
 
 
 /**
- * Retorna string com a capacidade, informacao dos equipamentos e o preco do quarto
+ * @return string com a capacidade, informacao dos equipamentos e o preco do quarto
  */
 string SalaReuniao::getInformacao() const
 {

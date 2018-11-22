@@ -12,9 +12,9 @@ using namespace std;
 
 /**
  * Constructor
- * n - Nome do cliente
- * NIF - NIF do cliente
- * nR - Numero de reservas feitas pelo cliente
+ * @param n - Nome do cliente
+ * @param NIF - NIF do cliente
+ * @param nR - Numero de reservas feitas pelo cliente
  */
 Cliente::Cliente(string n, unsigned int NIF, unsigned int nR): nome(n), numRes(nR)
 {
@@ -28,7 +28,7 @@ Cliente::Cliente(string n, unsigned int NIF, unsigned int nR): nome(n), numRes(n
 Cliente::~Cliente(){}
 
 /**
- * Retorna nome
+ * @return nome
  */
 string Cliente::getNome() const
 {
@@ -36,7 +36,7 @@ string Cliente::getNome() const
 }
 
 /**
- * Retorna NIF
+ * @return NIF
  */
 unsigned int Cliente::getNIF() const
 {
@@ -44,7 +44,7 @@ unsigned int Cliente::getNIF() const
 }
 
 /**
- * Retorna numero de reservas feitas pelo cliente
+ * @return numero de reservas feitas pelo cliente
  */
 unsigned int Cliente::getNR() const
 {
@@ -52,7 +52,7 @@ unsigned int Cliente::getNR() const
 }
 
 /**
- * Retorna string com nome e NIF do cliente
+ * @return string com nome e NIF do cliente
  */
 string Cliente::getInformacao() const
 {
@@ -64,7 +64,7 @@ string Cliente::getInformacao() const
 }
 
 /**
- * Retorna true se cliente for o mesmo e falso no caso contrario
+ * @return true se cliente for o mesmo e falso no caso contrario
  */
 bool Cliente::operator == (const Cliente &Cl1) const
 {
@@ -74,12 +74,12 @@ bool Cliente::operator == (const Cliente &Cl1) const
 
 /**
  * Escreve para ofstream a informacao do cliente no formato usado no ficheiro de texto
- * os - ostream onde é guardada informacao
- * c1 - Cliente cuja informacao é lida
+ * @param os - ostream onde é guardada informacao
+ * @param c1 - Cliente cuja informacao é lida
  */
 ostream &operator << (ostream &os, Cliente &c1)
 {
-	os << c1.getNome() << ", " << c1.getNIF();
+	os << c1.getNome() << ", " << c1.getNIF() << ", " << c1.getNR();
 	return os;
 }
 

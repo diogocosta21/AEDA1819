@@ -8,10 +8,19 @@
 #include "Data.h"
 
 
+/**
+ * Construtor
+ * @param d - dia
+ * @param m - mes
+ * @param a - ano
+ */
 Data::Data(unsigned int d, unsigned int m, unsigned int a) : dia(d), mes(m), ano(a)
 {}
 
-
+/**
+ * Construtor com string
+ * @param string da data no formato dd-mm-aaaa
+ */
 Data::Data(string data)
 {
 	string d = data.substr(0, data.find('-'));
@@ -25,29 +34,43 @@ Data::Data(string data)
 
 }
 
-
+/**
+ * Destrutor
+ */
 Data::~Data()
 {}
 
-
+/**
+ * @return dia
+ */
 unsigned int Data::getDia() const
 {
 	return this->dia;
 }
 
 
+/**
+ * @return mes
+ */
 unsigned int Data::getMes() const
 {
 	return this->mes;
 }
 
 
+/**
+ * @return ano
+ */
 unsigned int Data::getAno() const
 {
 	return this->ano;
 }
 
 
+/**
+ * Converte a data em dias desde inicio do ano
+ * @return numero de dias
+ */
 unsigned int Data::converteEmDias ()
 {
 	int converteEmDias = 0;
@@ -68,6 +91,10 @@ unsigned int Data::converteEmDias ()
 	return converteEmDias;
 }
 
+
+/**
+ *
+ */
 unsigned int Data::valorData() {
 	int valordata = 0;
 	valordata=+ ano * 1000;
@@ -78,6 +105,10 @@ unsigned int Data::valorData() {
 }
 
 
+/**
+ * @return numero de dias entre duas datas
+ * @param d1 - data a ser comparada
+ */
 unsigned int Data::daysBetween (Data d1)
 {
 	if (this->converteEmDias() > d1.converteEmDias())
@@ -87,6 +118,10 @@ unsigned int Data::daysBetween (Data d1)
 }
 
 
+/**
+ * @return true se a data é anterior ou igual à data da direita
+ * @param right - data a ser comparada
+ */
 bool Data::operator <= (const Data& right) const
 {
 	vector<int> l,r;
@@ -113,6 +148,10 @@ bool Data::operator <= (const Data& right) const
 }
 
 
+/**
+ * @return true se duas data sao iguais
+ * @param right - data a ser comparada
+ */
 bool Data::operator ==(const Data& right) const
 
 {
@@ -123,6 +162,9 @@ bool Data::operator ==(const Data& right) const
 }
 
 
+/**
+ * @return true se a data é valida
+ */
 bool Data::validateData()
 {
 	if(mes < 0 || mes > 12)

@@ -10,10 +10,10 @@
 
 /**
  * Constructor
- * clientes - Clientes do hotel
- * funcionarios - Funcionarios do hotel
- * quartos - Quartos do hotel
- * salasreuniao - Salas de reuniao do hotel
+ * @param clientes - Clientes do hotel
+ * @param funcionarios - Funcionarios do hotel
+ * @param quartos - Quartos do hotel
+ * @param salasreuniao - Salas de reuniao do hotel
  */
 Hotel::Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao)
 {
@@ -32,7 +32,7 @@ Hotel::~Hotel(){}
 
 /**
  * Exporta clientes para ficheiro de texto
- * file - ficheiro que guarda informacao dos clientes
+ * @param file - ficheiro que guarda informacao dos clientes
  */
 void Hotel::exportClientes(string file)
 {
@@ -50,7 +50,7 @@ void Hotel::exportClientes(string file)
 
 /**
  * Exporta funcionarios para ficheiro de texto
- * file - ficheiro que guarda informacao dos funcionarios
+ * @param file - ficheiro que guarda informacao dos funcionarios
  */
 void Hotel::exportFuncionarios(string file)
 {
@@ -67,7 +67,7 @@ void Hotel::exportFuncionarios(string file)
 
 /**
  * Exporta supervisores para ficheiro de texto
- * file - ficheiro que guarda informacao dos funcionarios
+ * @param file - ficheiro que guarda informacao dos funcionarios
  */
 void Hotel::exportSupervisores(string file)
 {
@@ -84,7 +84,7 @@ void Hotel::exportSupervisores(string file)
 
 /**
  * Exporta quartos para ficheiro de texto
- * file - ficheiro que guarda informacao dos quartos
+ * @param file - ficheiro que guarda informacao dos quartos
  */
 void Hotel::exportQuartos(string file)
 {
@@ -101,7 +101,7 @@ void Hotel::exportQuartos(string file)
 
 /**
  * Exporta salas de reuniao para ficheiro de texto
- * file - ficheiro que guarda informacao das salas de reuniao
+ * @param file - ficheiro que guarda informacao das salas de reuniao
  */
 void Hotel::exportSalasReuniao(string file)
 {
@@ -118,8 +118,8 @@ void Hotel::exportSalasReuniao(string file)
 
 /**
  * Adiciona cliente ao vetor de clientes
- * nome - Nome do cliente
- * NIF - NIF do cliente
+ * @param nome - Nome do cliente
+ * @param NIF - NIF do cliente
  */
 void Hotel::addCliente(string nome, int NIF, unsigned int numRes)
 {
@@ -129,7 +129,7 @@ void Hotel::addCliente(string nome, int NIF, unsigned int numRes)
 
 /**
  * Adiciona funcionario ao vetor de funcionarios
- * nome - Nome do funcionario
+ * @param nome - Nome do funcionario
  */
 void Hotel::addFuncionario(string nome)
 {
@@ -139,7 +139,7 @@ void Hotel::addFuncionario(string nome)
 
 /**
  * Adiciona supervisor ao vetor de supervisores
- * nome - Nome do supervisor
+ * @param nome - Nome do supervisor
  */
 void Hotel::addSupervisor(string nome, int numQuartos)
 {
@@ -149,20 +149,20 @@ void Hotel::addSupervisor(string nome, int numQuartos)
 
 /**
  * Adiciona quarto ao vetor dos quartos
- * tipo - tipo do quarto
- * lugar - local do quarto
+ * @param tipo - tipo do quarto
+ * @param lugar - local do quarto
  */
-void Hotel::addQuarto(string tipo, string lugar, bool res)
+void Hotel::addQuarto(string tipo, string lugar, bool res/*, vector<Data> r*/)
 {
-	Quarto * quarto = new Quarto(tipo, lugar, res);
+	Quarto * quarto = new Quarto(tipo, lugar, res/*, r*/);
 	quartos.push_back(quarto);
 }
 
 /**
  * Adiciona sala de reuniao ao vetor das salas de reuniao
- * capacidade - capacidade da sala de reuniao
- * video - verdade se sala de reuniao tiver equipamento de video
- * audio - verdade se sala de reuniao tiver equipamento de audio
+ * @param capacidade - capacidade da sala de reuniao
+ * @param video - verdade se sala de reuniao tiver equipamento de video
+ * @param audio - verdade se sala de reuniao tiver equipamento de audio
  */
 void Hotel::addSalaReuniao(int capacidade, bool video, bool audio, bool res)
 {
@@ -172,7 +172,7 @@ void Hotel::addSalaReuniao(int capacidade, bool video, bool audio, bool res)
 
 /**
  * Remove cliente do vector de clientes presentes no hotel
- * nome - Nome do cliente
+ * @param nome - Nome do cliente
  */
 void Hotel::removeCliente(string nome)
 {
@@ -186,7 +186,7 @@ void Hotel::removeCliente(string nome)
 }
 
 /**
- * Retorna vector dos clientes
+ * @return vector dos clientes
  */
 vector<Cliente *> Hotel::getClientes() const
 {
@@ -194,7 +194,7 @@ vector<Cliente *> Hotel::getClientes() const
 }
 
 /**
- * Retorna vector dos funcionarios
+ * @return vector dos funcionarios
  */
 vector<Funcionario *> Hotel::getFuncionarios() const
 {
@@ -202,7 +202,7 @@ vector<Funcionario *> Hotel::getFuncionarios() const
 }
 
 /**
- * Retorna vector dos supervisores
+ * @return vector dos supervisores
  */
 vector<Supervisor *> Hotel::getSupervisores() const
 {
@@ -210,7 +210,7 @@ vector<Supervisor *> Hotel::getSupervisores() const
 }
 
 /**
- * Retorna vector dos quartos
+ * @return vector dos quartos
  */
 vector<Quarto *> Hotel::getQuartos() const
 {
@@ -218,7 +218,7 @@ vector<Quarto *> Hotel::getQuartos() const
 }
 
 /**
- * Retorna vector das salas de reuniao
+ * @return vector das salas de reuniao
  */
 vector<SalaReuniao *> Hotel::getSalasReuniao() const
 {
@@ -226,7 +226,7 @@ vector<SalaReuniao *> Hotel::getSalasReuniao() const
 }
 
 /**
- * Retorna data
+ * @return data
  */
 Data Hotel::getData() const
 {
@@ -431,6 +431,9 @@ void Hotel::printSalasReuniaoPorPreco() const
 	}
 }
 
+/**
+ * Imprime salas de reuniao nao reservadas
+ */
 void Hotel::printSalasReuniaoNaoReservadas() const
 {
 	vector<SalaReuniao *> v;
@@ -448,7 +451,9 @@ void Hotel::printSalasReuniaoNaoReservadas() const
 	}
 }
 
-
+/**
+ * Imprime salas de reuniao nao reservadas ordenadas pelo preço
+ */
 void Hotel::printSalasReuniaoNaoReservadasPorPreco() const {
  	vector<SalaReuniao *> v = salasreuniao;
 	unsigned int j;

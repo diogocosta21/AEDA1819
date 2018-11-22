@@ -12,13 +12,14 @@
 #include "Data.h"
 #include "Excecoes.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Espaco {
 protected:
 	/**
-	 * Supervisor reponsavel pelo espaço
+	 * @brief supervisor reponsavel pelo espaço
 	 */
 	Supervisor *sup;
 public:
@@ -30,34 +31,39 @@ public:
 
 class Quarto: public Espaco {
 	/**
-	 * Especifica o tipo de quarto
+	 * @brief especifica o tipo de quarto
 	 */
 	string tipo;
 	/**
-	 * Especifica o local do quarto
+	 * @brief especifica o local do quarto
 	 */
 	string local;
 	/**
-	 * Preco base de um quarto simples
+	 * @brief preco base de um quarto simples
 	 */
 	int simples_preco = 75;
 	/**
-	 * Preco base de um quarto duplo
+	 * @brief preco base de um quarto duplo
 	 */
 	int duplo_preco = 100;
 	/**
-	 * Indica se quarto está reservado ou nao
+	 * @brief indica se quarto está reservado ou nao
 	 */
 	bool reservado;
+	/**
+	 * @brief vector com as datas reservadas
+	 */
+	//vector<Data> r;
 public:
-	Quarto() {};
-	Quarto (string t, string l, bool res);
+	//Quarto() {};
+	Quarto (string t, string l, bool res/*, vector<Data> r*/);
 	string getTipo() const;
 	string getLocal() const;
 	int getPrecoQuarto() const;
 	int getPrecoMes(Data d) const;
 	int getPrecoFinal(Data d1, Data d2) const;
 	string getRes() const;
+	vector<Data> getReservas() const;
 	string getInformacao() const;
 	void setRes();
 	friend ostream &operator << (ostream &os, Quarto &q1);
@@ -67,31 +73,31 @@ public:
 
 class SalaReuniao: public Espaco {
 	/**
-	 * Preco da reserva da sala de reuniao
+	 * @brief preco da reserva da sala de reuniao
 	 */
 	int preco;
 	/**
-	 * Capacidade da sala de reuniao
+	 * @brief capacidade da sala de reuniao
 	 */
 	int capacidade;
 	/**
-	 * É verdade caso a sala tenha equipamento de video e falso no caso contrario
+	 * @brief é verdade caso a sala tenha equipamento de video e falso no caso contrario
 	 */
 	bool video;
 	/**
-	 * É verdade caso a sala tenha equipamento de audio e falso no caso contrario
+	 * @brief é verdade caso a sala tenha equipamento de audio e falso no caso contrario
 	 */
 	bool audio;
 	/**
-	 * Acrescimo do preco das salas com equipamento de video
+	 * @brief acrescimo do preco das salas com equipamento de video
 	 */
 	int acres_video = 50;
 	/**
-	 * Acrescimo do preco das salas com equipamento de audio
+	 * @brief acrescimo do preco das salas com equipamento de audio
 	 */
 	int acres_audio = 50;
 	/**
-	 * Indica se sala de reuniao está reservada ou nao
+	 * @brief indica se sala de reuniao está reservada ou nao
 	 */
 	bool reservado;
 public:

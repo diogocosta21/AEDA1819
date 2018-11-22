@@ -19,16 +19,18 @@ using namespace std;
 
 class Data {
 private:
+	/**
+	 * @brief dia da data
+	 */
 	unsigned int dia;
+	/**
+	 * @brief mes da data
+	 */
 	unsigned int mes;
+	/**
+	 * @brief ano da data
+	 */
 	unsigned int ano;
-	string segundafeira;
-	string tercafeira;
-	string quartafeira;
-	string quintafeira;
-	string sextafeira;
-	string sabado;
-	string domingo;
 public:
 	Data(){};
 	Data (unsigned int d, unsigned int m, unsigned int a);

@@ -16,7 +16,7 @@
 using namespace std;
 
 /**
- * Called when the user inserts an invalid option in a menu.
+ * Chamada quando o utilizar insere opçao invalida no menu
  */
 class OpcaoInvalida
 {
@@ -24,15 +24,15 @@ private:
 	int opcao;
 public:
 	/**
-	 * The constructor
-	 * @param o invalid option inserted.
+	 * Construtor
+	 * @param o - opçao invalida inserida
 	 */
 	OpcaoInvalida(int o)
 	{
 		this->opcao = o;
 	}
 	/**
-	 * @return option.
+	 * @return opçao
 	 */
 	int getOpcao() const
 	{
@@ -46,15 +46,15 @@ private:
 	string opcao;
 public:
 	/**
-	 * The constructor
-	 * @param o invalid option inserted.
+	 * Constructor
+	 * @param o - opçao invalida inserida
 	 */
 	OpcaoInvalidast(string o)
 	{
 		this->opcao = o;
 	}
 	/**
-	 * @return option.
+	 * @return opçao
 	 */
 	string getOpcao() const
 	{
@@ -67,19 +67,34 @@ public:
  */
 class TipoInvalido {
 	/**
-	 * @param string invalida inserida
+	 * @brief string invalida inserida
 	 */
 	string tipo;
 public:
+	/**
+	 * Construtor
+	 * @param tipo - tipo invalido inserido
+	 */
 	TipoInvalido(string tipo)
 	{
 		this->tipo = tipo;
+		cout << "Tipo invalido" <<endl;
 	}
 };
 
+/**
+ * Chamada quando capacidade da sala inserida é invalida
+ */
 class CapacidadeInvalida{
+	/**
+	 * @brief int invalido inserido
+	 */
 	int capacidade;
 public:
+	/**
+	 * Construtor
+	 * @param capacidade invalida inserida
+	 */
 	CapacidadeInvalida(int capacidade) {
 		this->capacidade = capacidade;
 		if(capacidade > 50)

@@ -223,16 +223,14 @@ bool FazerReserva (Hotel *h)
 		}
 	}
 
-	cout << "Tipo de reserva que pretende efetuar(quarto ou sala de reuniao): ";
+	cout << "Tipo de reserva que pretende efetuar( '1' - (quarto) ou '2' - (sala de reuniao) ): ";
 	cin >> espaco;
 
 
-	if(espaco == "quarto")
+	if(espaco == "1")
 	{
-
-
 		cout << "Quartos do hotel: " << endl << endl;
-		h->printQuartosPorPreco();
+		h->printQuartosNaoReservadosPorPreco();
 		cout << endl << "Numero do quarto que pretende reservar: ";
 		unsigned int i;
 		cin >> i;
@@ -256,45 +254,45 @@ bool FazerReserva (Hotel *h)
 		cout << preco << endl << endl;
 
 		h->getQuartos()[i-1]->setRes();
+		//h->getQuartos()[i-1]->getReservas().push_back(data1);
+		//h->getQuartos()[i-1]->getReservas().push_back(data2);
 
 		cout << "Reserva finalizada" << endl << endl;
 
 		return true;
 	}
+	else if(espaco == "2")
+	{
+		cout << "Salas de reuniao: " << endl << endl;
+		h->printSalasReuniaoNaoReservadasPorPreco();
+		cout << endl << "Numero da sala de reuniao que pretende reservar: ";
+		unsigned int i;
+		cin >> i;
+		cin.clear();
+		cout << endl;
 
-	if(espaco == "sala de reuniao")
+		while(h->getSalasReuniao()[i-1]->getRes() == "Reservado")
 		{
-			cout << "Salas de reuniao: " << endl << endl;
-			h->printSalasReuniaoNaoReservadasPorPreco();
-			cout << endl << "Numero da sala de reuniao que pretende reservar: ";
-			unsigned int i;
+			cout << "A sala de reuniao escolhida encontra-se reservada. Por favor escolher outra: ";
 			cin >> i;
 			cin.clear();
 			cout << endl;
-
-			while(h->getSalasReuniao()[i-1]->getRes() == "Reservado")
-			{
-				cout << "A sala de reuniao escolhida encontra-se reservada. Por favor escolher outra: ";
-				cin >> i;
-				cin.clear();
-				cout << endl;
-			}
-
-			cout << "Preco a pagar: ";
-
-			int precoDia;
-			precoDia = h->getQuartos()[i-1]->getPrecoMes(d);
-
-			preco = precoDia * numDias;
-
-			cout << preco << endl << endl;
-
-			h->getSalasReuniao()[i-1]->setRes();
-
-			cout << "Reserva finalizada" << endl << endl;
-
-			return true;
 		}
+		cout << "Preco a pagar: ";
+
+		int precoDia;
+		precoDia = h->getQuartos()[i-1]->getPrecoMes(d);
+
+		preco = precoDia * numDias;
+
+		cout << preco << endl << endl;
+
+		h->getSalasReuniao()[i-1]->setRes();
+
+		cout << "Reserva finalizada" << endl << endl;
+
+		return true;
+	}
 	return true;
 }
 
@@ -490,6 +488,7 @@ bool CriarEspaco (Hotel *h)
 								string tipo;
 								string local;
 								bool res = false;
+								//vector<Data> data;
 
 								cout << "Tipo de quarto(simples ou duplo): ";
 								getline(cin, tipo);
@@ -499,7 +498,7 @@ bool CriarEspaco (Hotel *h)
 								getline(cin, local);
 								cin.clear();
 
-								h->addQuarto(tipo, local, res);
+								h->addQuarto(tipo, local, res/*, data*/);
 
 								break;
 							}

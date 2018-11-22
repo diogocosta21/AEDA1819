@@ -17,19 +17,19 @@ using namespace std;
 class Cliente {
 private:
 	/**
-	 * Nome do cliente
+	 * @brief Nome do cliente
 	 */
 	string nome;
 	/**
-	 * NIF do cliente
+	 * @brief NIF do cliente
 	 */
 	unsigned int NIF;
 	/**
-	 * Numero de reservas feitas pelo cliente
+	 * @brief Numero de reservas feitas pelo cliente
 	 */
 	unsigned int numRes;
 public:
-	Cliente(){};
+	//Cliente(){};
 	Cliente(string n, unsigned int NIF, unsigned int nR);
 	virtual ~Cliente();
 	string getNome() const;

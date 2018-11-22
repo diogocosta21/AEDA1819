@@ -23,27 +23,27 @@ using namespace std;
 class Hotel {
 private:
 	/**
-	 * Vector com clientes no hotel
+	 * @brief vector com clientes no hotel
 	 */
 	vector<Cliente *> clientes;
 	/**
-	 * Vector com funcionarios do hotel
+	 * @brief vector com funcionarios do hotel
 	 */
 	vector<Funcionario *> funcionarios;
 	/**
-	 * Vector com supervisores do hotel
+	 * @brief vector com supervisores do hotel
 	 */
 	vector<Supervisor *> supervisores;
 	/**
-	 * Vector com quartos do hotel
+	 * @brief vector com quartos do hotel
 	 */
 	vector<Quarto *> quartos;
 	/**
-	 * Vector com salas de reuniao do hotel
+	 * @brief vector com salas de reuniao do hotel
 	 */
 	vector<SalaReuniao *> salasreuniao;
 	/**
-	 * Data atual
+	 * @brief data atual
 	 */
 	Data data;
 public:
@@ -57,7 +57,7 @@ public:
 	void addCliente(string nome, int NIF, unsigned int numRes);
 	void addFuncionario(string nome);
 	void addSupervisor(string nome, int numQuartos);
-	void addQuarto(string tipo, string lugar, bool res);
+	void addQuarto(string tipo, string lugar, bool res/*, vector<Data> r*/);
 	void addSalaReuniao(int capacidade, bool video, bool audio, bool res);
 	void removeCliente(string nome);
 	void setFuncionario(Funcionario func);
