@@ -46,9 +46,18 @@ unsigned int Cliente::getNIF() const
 /**
  * @return numero de reservas feitas pelo cliente
  */
-unsigned int Cliente::getNR() const
+int Cliente::getNR() const
 {
 	return numRes;
+}
+
+/**
+ * Incrementa o numero de reservas feitas
+ */
+void Cliente::incNr()
+{
+
+	numRes++;
 }
 
 /**

@@ -140,7 +140,7 @@ bool FazerReserva (Hotel *h)
 	{
 		if(h->getClientes()[i]->getNIF() == NIF)
 		{
-			h->getClientes()[i]->getNR()++;
+			h->getClientes()[i]->incNr();
 			existe = true;
 		}
 	}
@@ -271,7 +271,7 @@ bool FazerReserva (Hotel *h)
 		cin.clear();
 		cout << endl;
 
-		while(h->getSalasReuniao()[i-1]->getRes() == "Reservado")
+		while(h->getSalasReuniao()[i-1]->getRes() == "Reservada")
 		{
 			cout << "A sala de reuniao escolhida encontra-se reservada. Por favor escolher outra: ";
 			cin >> i;
