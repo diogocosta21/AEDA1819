@@ -30,6 +30,7 @@ int main()
 	vector <Funcionario *> funcionarios = FileReader::readFuncionarios(FuncionariosFile);
 	vector <Supervisor *> supervisores = FileReader::readSupervisores(SupervisoresFile);
 
+
 	Hotel h(clientes, funcionarios, quartos, salasreuniao, supervisores);
 
 	HotelMenu (&h);

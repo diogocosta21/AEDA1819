@@ -229,15 +229,14 @@ vector<SalaReuniao *> Hotel::getSalasReuniao() const
 Supervisor* Hotel::getSupComMenosEspacos() const
 {
 	Supervisor *s = supervisores[0];
-
-	for(unsigned int i = 0; i < supervisores.size(); i++)
+ 	for(unsigned int i = 0; i < supervisores.size(); i++)
 	{
 		if(supervisores[i]->getNumQuartos() < s->getNumQuartos())
 			s = supervisores[i];
 	}
-
-	return s;
+ 	return s;
 }
+
 
 /**
  * @return data
@@ -429,7 +428,7 @@ void Hotel::printSalasReuniaoPorPreco() const
 		for(unsigned int i = m; i < v.size(); i++)
 		{
 			SalaReuniao* sr = v[i];
-			for(j = i; j >= m && sr->getPreco() > v[j-m]->getPreco(); j -= m)
+			for(j = i; j >= m && sr->getPrecoSala() > v[j-m]->getPrecoSala(); j -= m)
 			{
 				v[j] = v[j-m];
 			}
@@ -477,7 +476,7 @@ void Hotel::printSalasReuniaoNaoReservadasPorPreco() const {
 		for(unsigned int i = m; i < v.size(); i++)
 		{
 			SalaReuniao* q = v[i];
-			for(j = i; j >= m && q->getPreco() > v[j-m]->getPreco(); j -= m)
+			for(j = i; j >= m && q->getPrecoSala() > v[j-m]->getPrecoSala(); j -= m)
 			{
 					v[j] = v[j-m];
 			}

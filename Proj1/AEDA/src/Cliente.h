@@ -15,6 +15,7 @@
 using namespace std;
 
 class Cliente {
+private:
 	/**
 	 * @brief Nome do cliente
 	 */
@@ -26,15 +27,15 @@ class Cliente {
 	/**
 	 * @brief Numero de reservas feitas pelo cliente
 	 */
-	int numRes;
+	unsigned int numRes;
 public:
 	//Cliente(){};
 	Cliente(string n, unsigned int NIF, unsigned int nR);
 	virtual ~Cliente();
 	string getNome() const;
 	unsigned int getNIF() const;
-	int getNR() const;
-	void incNr();
+	unsigned int getNR() const;
+	void incNR() ;
 	string getInformacao() const;
 	bool operator == (const Cliente &Cl1) const;
 	friend ostream &operator << (ostream &os, Cliente &c1);

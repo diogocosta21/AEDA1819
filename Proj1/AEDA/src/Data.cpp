@@ -97,10 +97,7 @@ unsigned int Data::converteEmDias ()
  */
 unsigned int Data::valorData() {
 	int valordata = 0;
-	valordata=+ ano * 1000;
-	valordata=+ (mes*100);
-	valordata=+ dia;
-
+	valordata = (ano * 10000) + (mes*100) + dia;
 	return valordata;
 }
 

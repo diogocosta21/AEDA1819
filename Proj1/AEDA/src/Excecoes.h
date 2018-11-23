@@ -97,12 +97,11 @@ public:
 	 */
 	CapacidadeInvalida(int capacidade) {
 		this->capacidade = capacidade;
-		if(capacidade > 50)
-		{
-			cout << "Capacidade tem de ser menor que 50" << endl;
-		}
-		else
-			cout << "Capacidade invalida" << endl;
+	}
+
+	int getCapacidade() const
+	{
+		return capacidade;
 	}
 };
 

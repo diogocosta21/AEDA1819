@@ -68,7 +68,7 @@ int Quarto::getPrecoQuarto() const
 	if(getTipo() == "simples")
 	{
 		if(getLocal() == "frente")
-			return simples_preco * 1.25;
+			return simples_preco * 1.5;
 		else if(getLocal() == "traseiras")
 			return simples_preco;
 	}
@@ -76,12 +76,10 @@ int Quarto::getPrecoQuarto() const
 	else if(getTipo() == "duplo")
 	{
 		if(getLocal() == "frente")
-			return duplo_preco * 1.25;
+			return duplo_preco * 1.5;
 		else if(getLocal() == "traseiras")
 			return duplo_preco;
 	}
-	else
-		throw TipoInvalido(tipo);
 }
 
 /**
@@ -113,15 +111,18 @@ int Quarto::getPrecoFinal(Data d1, Data d2) const {
 	int dias100 = 0;
 	int dias150 = 0;
 
-	int limite = 530;     // ate fim de junho
-	int limite2 = 831;    // ate fim de agosto
-	int limite3 = 1130;   // ate fim de novembro
-	int limite4 = 1231;   // ate fim de dezembro
+	int limite = 631;     // ate fim de junho
+	int limite2 = 832;    // ate fim de agosto
+	int limite3 = 1131;   // ate fim de novembro
+	int limite4 = 1232;   // ate fim de dezembro
+	bool anobi = false ;
+	if (d1ano % 4 == 0)
+		anobi = true;
 
 	if (d1ano != d2ano)
 	{
-		Data FimAno = Data(31, 12, d1ano);
-		Data InicioAno = Data(01, 01, (d1ano++));
+		Data FimAno = Data(32, 12, d1ano);
+		Data InicioAno = Data(01, 01, d2ano);
 		int intervalo1 = getPrecoFinal( d1, FimAno);
 		int intervalo2 = getPrecoFinal( InicioAno, d2);
 		return intervalo1 + intervalo2;
@@ -131,19 +132,93 @@ int Quarto::getPrecoFinal(Data d1, Data d2) const {
 		int auxd1, auxd2;
 		auxd1 = (d1mes*100) + d1dia;
 		auxd2 = (d2mes*100) + d2dia;
-		for (int aux = auxd1 ; aux <= auxd2 ; aux++) {
-			if (aux <= limite)
+		for (int aux = auxd1 ; aux < auxd2 ; aux++) {
+			if (0 < aux && aux <= limite)
 				dias100++;
-			if (aux <= limite2)
+			if (limite < aux && aux <= limite2)
 				dias150++;
-			if (aux <= limite3)
+			if (limite2 < aux && aux <= limite3)
 				dias100++;
-			if (aux <= limite4)
+			if (limite3< aux && aux <= limite4)
 				dias150++;
+			int g = (aux/100);
+			if ( (g == 4 || g == 6 || g == 9 || g == 11) && (aux%100 == 30) )
+				aux += 70;
+			else if ( g == 2 ) {
+				if (anobi == true) {
+					if (aux%100 == 29)
+						aux += 71;
+				}
+				else
+					if (aux%100 == 28)
+						aux += 72;
+			}
+			else if (aux%100 == 31)
+				aux += 69;
 		}
 	}
+
 	return dias100*getPrecoQuarto() + dias150*1.5*getPrecoQuarto();
 }
+
+
+int SalaReuniao::getPrecoFinalSalas(Data d1, Data d2) const {
+	int d1ano = d1.getAno();
+	int d1mes = d1.getMes();
+	int d1dia = d1.getDia();
+	int d2ano = d2.getAno();
+	int d2mes = d2.getMes();
+	int d2dia = d2.getDia();
+
+	int dias100 = 0;
+	int dias150 = 0;
+
+	if (d1ano != d2ano)
+	{
+		Data FimAno = Data(32, 12, d1ano);
+		Data InicioAno = Data(01, 01, d2ano);
+		int intervalo1 = getPrecoFinalSalas( d1, FimAno);
+		int intervalo2 = getPrecoFinalSalas( InicioAno, d2);
+		return intervalo1 + intervalo2;
+	}
+
+	int limite = 1131; // fim Novembro;
+	int limite2 = 1232; // fim de Dezembro
+
+	bool anobi = false ;
+	if (d1ano % 4 == 0)
+		anobi = true;
+
+	else {
+		int auxd1, auxd2;
+		auxd1 = (d1mes*100) + d1dia;
+		auxd2 = (d2mes*100) + d2dia;
+		for (int aux = auxd1 ; aux < auxd2 ; aux++) {
+			if (0 < aux && aux < limite )
+				dias100++;
+			if (limite < aux && aux <= limite2)
+				dias150++;
+			int g = (aux/100);
+			if ( (g == 4 || g == 6 || g == 9 || g == 11) && (aux%100 == 30) )
+				aux += 70;
+			else if ( g == 2 ) {
+				if (anobi == true) {
+					if (aux%100 == 29)
+						aux += 71;
+				}
+				else
+					if (aux%100 == 28)
+						aux += 72;
+			}
+			else if (aux%100 == 31)
+				aux += 69;
+		}
+	}
+
+	return dias100*getPrecoSala() + dias150*1.5*getPrecoSala();
+
+}
+
 
 /**
  * @return informacao sobre se o quarto está ou nao reservado
@@ -157,7 +232,7 @@ string Quarto::getRes() const
 }
 
 /**
- * @return nome do funcionario responsavel
+ *  @return nome do funcionario responsavel
  */
 string Quarto::getNome() const
 {
@@ -169,7 +244,7 @@ string Quarto::getNome() const
  */
 void Quarto::setRes()
 {
-	reservado = true;  // falta ir ao ficheiro txt e mudar
+	reservado = true;
 }
 
 /**
@@ -179,7 +254,7 @@ void Quarto::setRes()
  */
 ostream &operator << (ostream &os, Quarto &q1)
 {
-	os  << q1.getNome() << ", " << q1.getRes() << ", " << q1.getTipo() << ", " << q1.getLocal();
+	os << q1.getNome() << ", " << q1.getRes() << ", " << q1.getTipo() << " , " << q1.getLocal();
 	return os;
 }
 
@@ -189,7 +264,7 @@ ostream &operator << (ostream &os, Quarto &q1)
 string Quarto::getInformacao() const
 {
 	stringstream ss;
-	ss << getTipo() << ", " << getLocal() << ", " << getRes() <<", " << getNome();
+	ss << getTipo() << ", " << getLocal() << ", " << getRes() << " , " << getNome();;
 
 	return ss.str();
 }
@@ -212,14 +287,13 @@ SalaReuniao::SalaReuniao(int Capacidade, bool video, bool audio, bool reservado,
 		preco = 200;
 
 	this->reservado=reservado;
-
 	this->nome = nome;
 };
 
 /**
  * @return preco da sala de reuniao
  */
-int SalaReuniao::getPreco() const {
+int SalaReuniao::getPrecoSala() const {
 
 	int acrescimos = 0;
 	if (video == true) {acrescimos += acres_video;}
@@ -233,8 +307,6 @@ int SalaReuniao::getPreco() const {
 		int aux = preco + acrescimos;
 		return aux;
 	}
-	else
-		throw CapacidadeInvalida(capacidade);
 }
 
 
@@ -245,10 +317,10 @@ int SalaReuniao::getPreco() const {
 int SalaReuniao::getPrecoMes(Data d) const {
 	int mes = d.getMes();
 	if ((6 <= mes && mes <= 8) || mes == 12){
-		return getPreco()*1.25;
+		return getPrecoSala()*1.5;
 	}
 	else
-		return getPreco();
+		return getPrecoSala();
 }
 
 /**
@@ -293,13 +365,13 @@ string SalaReuniao::getRes() const
 		return "Nao reservada";
 }
 
-/**
- * @return nome do funcionario responsavel
+/*
+ *  @return nome do funcionario responsavel
  */
-string SalaReuniao::getNome() const
-{
+string SalaReuniao::getNome() const {
 	return nome;
 }
+
 
 /**
  * @return sala de reuniao reservada
@@ -327,9 +399,7 @@ ostream &operator << (ostream &os, SalaReuniao &sr1)
 string SalaReuniao::getInformacao() const
 {
 	stringstream ss;
-
-	ss << getCapacidade() << ", " << getVideo() << ", " << getAudio() << ", " << getRes() << ", " << getPreco() << ", " << getNome();
-
+	ss << getCapacidade() << ", " << getVideo() << ", " << getAudio() << ", " << getRes() << ", " << getPrecoSala() << ", " << getNome();
 	return ss.str();
 }
 

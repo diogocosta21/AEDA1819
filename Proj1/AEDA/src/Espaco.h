@@ -41,7 +41,7 @@ class Quarto: public Espaco {
 	/**
 	 * @brief preco base de um quarto simples
 	 */
-	int simples_preco = 75;
+	int simples_preco = 80;
 	/**
 	 * @brief preco base de um quarto duplo
 	 */
@@ -62,8 +62,8 @@ public:
 	int getPrecoQuarto() const;
 	int getPrecoMes(Data d) const;
 	int getPrecoFinal(Data d1, Data d2) const;
-	string getRes() const;
 	string getNome() const;
+	string getRes() const;
 	vector<Data> getReservas() const;
 	string getInformacao() const;
 	void setRes();
@@ -106,17 +106,19 @@ class SalaReuniao: public Espaco {
 	*
 	*/
 	string nome;
+
 public:
 	SalaReuniao();
 	SalaReuniao(int Capacidade, bool video, bool audio, bool reservado, string nome);
-	int getPreco() const;
+	int getPrecoSala() const;
 	int getPrecoMes(Data d) const;
 	int getCapacidade() const;
 	string getAudio() const;
 	string getVideo() const;
 	string getRes() const;
-	string getNome() const;
 	void setRes();
+	string getNome() const;
+	int getPrecoFinalSalas(Data d1, Data d2) const;
 	string getInformacao() const;
 	friend ostream &operator << (ostream &os, SalaReuniao &q1);
 };

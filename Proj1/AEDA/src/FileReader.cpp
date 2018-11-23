@@ -64,7 +64,6 @@ vector<Cliente *> FileReader::readClientes(string file)
 	return clientes;
 }
 
-
 /**
  * Lê informaçao dos quartos
  * @param file - ficheiro dos quartos

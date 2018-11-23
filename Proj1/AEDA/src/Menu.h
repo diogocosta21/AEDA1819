@@ -34,15 +34,23 @@ bool HotelMenu(Hotel *h);
 bool FazerReserva (Hotel *h);
 
 /**
+ * Menu para criar espaços
+ * @param h - hotel
+ */
+bool CriarEspaco(Hotel *h);
+
+/*
+ * Menu para contratar funcionarios
+ * @param h - hotel
+ */
+
+bool ContratarFuncionarios(Hotel *h);
+
+/**
  * Menu para ver ficheiros
  * @param h - hotel
  */
 bool VerFicheiro (Hotel *h);
 
-/**
- * Menu para criar espaços
- * @param h - hotel
- */
-bool CriarEspaco(Hotel *h);
 
 #endif /* MENU_H_ */

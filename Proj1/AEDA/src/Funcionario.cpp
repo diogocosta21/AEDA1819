@@ -70,10 +70,8 @@ unsigned int Supervisor::getNumQuartos() const
 /**
  * Incrementa o numero de quartos do supervisor
  */
-void Supervisor::incNr()
-{
-
-	numQuartos++;
+void Supervisor::incNr() {
+ 	numQuartos++;
 }
 
 
