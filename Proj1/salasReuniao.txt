@@ -1,1 +1,5 @@
-1, 50, Sem equipamento de video, Sem equipamento de audio, Nao reservada;
+Karina Filipa, Nao reservada, 0, Com equipamento de video, Com equipamento de audio;
+Miguel Bastos, Reservada, 50, Sem equipamento de video, Com equipamento de audio;
+Karina Filipa, Nao reservada, 20, Com equipamento de video, Com equipamento de audio;
+Joaquim Loiro, Nao reservada, 10, Sem equipamento de video, Sem equipamento de audio;
+Miguel Bastos, Nao reservada, 50, Com equipamento de video, Com equipamento de audio;

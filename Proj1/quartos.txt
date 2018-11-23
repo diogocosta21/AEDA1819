@@ -1,0 +1,6 @@
+Joaquim Loiro, Reservado, simples , frente;
+Miguel Bastos, Nao reservado, simples , traseiras;
+Karina Filipa, Nao reservado, simples , frente;
+Joaquim Loiro, Nao reservado, duplo , frente;
+Miguel Bastos, Reservado, duplo , frente;
+Joaquim Loiro, Nao reservado, duplo , traseiras;
