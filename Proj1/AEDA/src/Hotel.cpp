@@ -15,12 +15,13 @@
  * @param quartos - Quartos do hotel
  * @param salasreuniao - Salas de reuniao do hotel
  */
-Hotel::Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao)
+Hotel::Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao, vector<Supervisor *> supervisores)
 {
 	this->clientes=clientes;
 	this->funcionarios=funcionarios;
 	this->quartos=quartos;
 	this->salasreuniao=salasreuniao;
+	this->supervisores=supervisores;
 	data = Data("16-11-2018");
 }
 

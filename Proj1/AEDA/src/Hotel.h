@@ -47,7 +47,7 @@ private:
 	 */
 	Data data;
 public:
-	Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao);
+	Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao, vector<Supervisor *> supervisores);
 	virtual ~Hotel();
 	void exportClientes(string file);
 	void exportFuncionarios(string file);

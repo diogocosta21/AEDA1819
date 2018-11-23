@@ -20,6 +20,7 @@ using namespace std;
 #define QuartosFile "quartos.txt"
 #define SalasReuniaoFile "salasReuniao.txt"
 #define FuncionariosFile "funcionarios.txt"
+#define SupervisoresFile "supervisores.txt"
 
 int main()
 {
@@ -27,9 +28,10 @@ int main()
 	vector <Quarto *> quartos = FileReader::readQuartos(QuartosFile);
 	vector <SalaReuniao *> salasreuniao = FileReader::readSalasReuniao(SalasReuniaoFile);
 	vector <Funcionario *> funcionarios = FileReader::readFuncionarios(FuncionariosFile);
+	vector <Supervisor *> supervisores = FileReader::readSupervisores(SupervisoresFile);
 
 
-	Hotel h(clientes, funcionarios, quartos, salasreuniao);
+	Hotel h(clientes, funcionarios, quartos, salasreuniao, supervisores);
 
 	HotelMenu (&h);
 
@@ -37,6 +39,7 @@ int main()
 	h.exportQuartos (QuartosFile);
 	h.exportSalasReuniao (SalasReuniaoFile);
 	h.exportFuncionarios (FuncionariosFile);
+	h.exportSupervisores(SupervisoresFile);
 
 	return 0;
 }
