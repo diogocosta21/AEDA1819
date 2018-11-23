@@ -153,9 +153,9 @@ void Hotel::addSupervisor(string nome, int numQuartos)
  * @param tipo - tipo do quarto
  * @param lugar - local do quarto
  */
-void Hotel::addQuarto(string tipo, string lugar, bool res/*, vector<Data> r*/)
+void Hotel::addQuarto(string tipo, string lugar, bool res, string nome)
 {
-	Quarto * quarto = new Quarto(tipo, lugar, res/*, r*/);
+	Quarto * quarto = new Quarto(tipo, lugar, res, nome);
 	quartos.push_back(quarto);
 }
 
@@ -165,9 +165,9 @@ void Hotel::addQuarto(string tipo, string lugar, bool res/*, vector<Data> r*/)
  * @param video - verdade se sala de reuniao tiver equipamento de video
  * @param audio - verdade se sala de reuniao tiver equipamento de audio
  */
-void Hotel::addSalaReuniao(int capacidade, bool video, bool audio, bool res)
+void Hotel::addSalaReuniao(int capacidade, bool video, bool audio, bool res, string nome)
 {
-	SalaReuniao * sr = new SalaReuniao(capacidade, video, audio, res);
+	SalaReuniao * sr = new SalaReuniao(capacidade, video, audio, res, nome);
 	salasreuniao.push_back(sr);
 }
 
@@ -224,6 +224,19 @@ vector<Quarto *> Hotel::getQuartos() const
 vector<SalaReuniao *> Hotel::getSalasReuniao() const
 {
 	return salasreuniao;
+}
+
+Supervisor* Hotel::getSupComMenosEspacos() const
+{
+	Supervisor *s = supervisores[0];
+
+	for(unsigned int i = 0; i < supervisores.size(); i++)
+	{
+		if(supervisores[i]->getNumQuartos() < s->getNumQuartos())
+			s = supervisores[i];
+	}
+
+	return s;
 }
 
 /**

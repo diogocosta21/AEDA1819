@@ -57,8 +57,8 @@ public:
 	void addCliente(string nome, int NIF, unsigned int numRes);
 	void addFuncionario(string nome);
 	void addSupervisor(string nome, int numQuartos);
-	void addQuarto(string tipo, string lugar, bool res/*, vector<Data> r*/);
-	void addSalaReuniao(int capacidade, bool video, bool audio, bool res);
+	void addQuarto(string tipo, string lugar, bool res, string nome);
+	void addSalaReuniao(int capacidade, bool video, bool audio, bool res, string nome);
 	void removeCliente(string nome);
 	void setFuncionario(Funcionario func);
 	vector<Cliente *> getClientes() const;
@@ -66,6 +66,7 @@ public:
 	vector<Supervisor *> getSupervisores() const;
 	vector<Quarto *> getQuartos() const;
 	vector<SalaReuniao *> getSalasReuniao() const;
+	Supervisor* getSupComMenosEspacos() const;
 	Data getData() const;
 	void printClientes() const;
 	void printClientesByNIF() const;

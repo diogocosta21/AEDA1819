@@ -496,7 +496,16 @@ bool CriarEspaco (Hotel *h)
 								getline(cin, local);
 								cin.clear();
 
-								h->addQuarto(tipo, local, res/*, data*/);
+								Supervisor *s = h->getSupComMenosEspacos();
+
+								string n = s->getNome();
+
+								h->addQuarto(tipo, local, res, n);
+
+
+								h->getQuartos()[h->getQuartos().size() - 1]->setSupervisor(s);
+
+								h->getSupComMenosEspacos()->incNr();
 
 								break;
 							}
@@ -537,7 +546,16 @@ bool CriarEspaco (Hotel *h)
 								else if(aud == "nao")
 									audio = false;
 
-								h->addSalaReuniao(capacidade, video, audio, res);
+								Supervisor *s = h->getSupComMenosEspacos();
+
+								string n = s->getNome();
+
+								h->addSalaReuniao(capacidade, video, audio, res, n);
+
+
+								h->getQuartos()[h->getQuartos().size() - 1]->setSupervisor(s);
+
+								h->getSupComMenosEspacos()->incNr();
 
 								break;
 							}

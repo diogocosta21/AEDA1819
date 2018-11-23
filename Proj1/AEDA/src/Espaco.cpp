@@ -17,7 +17,7 @@ using namespace std;
  */
 void Espaco::setSupervisor(Supervisor *sup)
 {
-	this -> sup = sup;
+	this->sup = sup;
 }
 
 /**
@@ -36,12 +36,12 @@ Supervisor *Espaco::getSupervisor() const
  * @param t - Tipo de quarto
  * @param l - Local do quarto
  */
-Quarto::Quarto(string t, string l, bool res/*, vector<Data> r*/)
+Quarto::Quarto(string t, string l, bool res, string nome)
 {
 	tipo = t;
 	local = l;
 	reservado = res;
-	//this->r = r;
+	this->nome = nome;
 }
 
 /**
@@ -157,12 +157,12 @@ string Quarto::getRes() const
 }
 
 /**
- * @return vector com as datas das reservas
+ * @return nome do funcionario responsavel
  */
-/*vector<Data> Quarto::getReservas() const
+string Quarto::getNome() const
 {
-	return r;
-}*/
+	return nome;
+}
 
 /**
  * Poe quarto reservado
@@ -179,11 +179,7 @@ void Quarto::setRes()
  */
 ostream &operator << (ostream &os, Quarto &q1)
 {
-	os << q1.getRes() << ", " << q1.getTipo() << ", " << q1.getLocal(); /*<< ", " << q1.getReservas()*/
-	/*for(unsigned int i = 0; i < q1.getReservas().size(); i++)
-	{
-		os << ", " << q1.getReservas()[i] << " - " << q1.getReservas()[i+1];
-	}*/
+	os  << q1.getNome() << ", " << q1.getRes() << ", " << q1.getTipo() << ", " << q1.getLocal();
 	return os;
 }
 
@@ -193,11 +189,8 @@ ostream &operator << (ostream &os, Quarto &q1)
 string Quarto::getInformacao() const
 {
 	stringstream ss;
-	ss << getTipo() << ", " << getLocal() << ", " << getRes();
-	/*for(unsigned int i = 0; i < getReservas().size(); i++)
-	{
-		ss << ", " << getReservas()[i] << " - " << getReservas()[i+1];
-	}*/
+	ss << getTipo() << ", " << getLocal() << ", " << getRes() <<", " << getNome();
+
 	return ss.str();
 }
 
@@ -209,7 +202,7 @@ string Quarto::getInformacao() const
  * @param video - verdade se a sala tem equipamento de video
  * @param audio - verdade se a sala tem equipamento de audio
  */
-SalaReuniao::SalaReuniao(int Capacidade, bool video, bool audio, bool reservado) : capacidade (Capacidade) {
+SalaReuniao::SalaReuniao(int Capacidade, bool video, bool audio, bool reservado, string nome) : capacidade (Capacidade) {
 	this->video=video;
 	this->audio=audio;
 
@@ -219,6 +212,8 @@ SalaReuniao::SalaReuniao(int Capacidade, bool video, bool audio, bool reservado)
 		preco = 200;
 
 	this->reservado=reservado;
+
+	this->nome = nome;
 };
 
 /**
@@ -299,6 +294,14 @@ string SalaReuniao::getRes() const
 }
 
 /**
+ * @return nome do funcionario responsavel
+ */
+string SalaReuniao::getNome() const
+{
+	return nome;
+}
+
+/**
  * @return sala de reuniao reservada
  */
 void SalaReuniao::setRes()
@@ -313,7 +316,7 @@ void SalaReuniao::setRes()
  */
 ostream &operator << (ostream &os, SalaReuniao &sr1)
 {
-	os << sr1.getRes() << ", " << sr1.getCapacidade() << ", " << sr1.getVideo() << ", " << sr1.getAudio();
+	os << sr1.getNome() << ", " << sr1.getRes() << ", " << sr1.getCapacidade() << ", " << sr1.getVideo() << ", " << sr1.getAudio();
 	return os;
 }
 
@@ -324,7 +327,9 @@ ostream &operator << (ostream &os, SalaReuniao &sr1)
 string SalaReuniao::getInformacao() const
 {
 	stringstream ss;
-	ss << " " << getCapacidade() << " -" << getVideo() << " -" << getAudio() << " -" << getRes() << " -" << getPreco();
+
+	ss << getCapacidade() << ", " << getVideo() << ", " << getAudio() << ", " << getRes() << ", " << getPreco() << ", " << getNome();
+
 	return ss.str();
 }
 

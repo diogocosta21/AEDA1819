@@ -68,6 +68,16 @@ unsigned int Supervisor::getNumQuartos() const
 }
 
 /**
+ * Incrementa o numero de quartos do supervisor
+ */
+void Supervisor::incNr()
+{
+
+	numQuartos++;
+}
+
+
+/**
  * @return string com nome e numero de quartos da responsabilidade do supervisor
  */
 string Supervisor::getInformacao() const

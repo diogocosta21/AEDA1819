@@ -51,18 +51,19 @@ class Quarto: public Espaco {
 	 */
 	bool reservado;
 	/**
-	 * @brief vector com as datas reservadas
+	 * @brief nome do supervisor responsavel
 	 */
-	//vector<Data> r;
+	string nome;
 public:
 	//Quarto() {};
-	Quarto (string t, string l, bool res/*, vector<Data> r*/);
+	Quarto (string t, string l, bool res, string nome);
 	string getTipo() const;
 	string getLocal() const;
 	int getPrecoQuarto() const;
 	int getPrecoMes(Data d) const;
 	int getPrecoFinal(Data d1, Data d2) const;
 	string getRes() const;
+	string getNome() const;
 	vector<Data> getReservas() const;
 	string getInformacao() const;
 	void setRes();
@@ -100,15 +101,21 @@ class SalaReuniao: public Espaco {
 	 * @brief indica se sala de reuniao está reservada ou nao
 	 */
 	bool reservado;
+	/**
+	* @brief nome do supervisor responsavel
+	*
+	*/
+	string nome;
 public:
 	SalaReuniao();
-	SalaReuniao(int Capacidade, bool video, bool audio, bool reservado);
+	SalaReuniao(int Capacidade, bool video, bool audio, bool reservado, string nome);
 	int getPreco() const;
 	int getPrecoMes(Data d) const;
 	int getCapacidade() const;
 	string getAudio() const;
 	string getVideo() const;
 	string getRes() const;
+	string getNome() const;
 	void setRes();
 	string getInformacao() const;
 	friend ostream &operator << (ostream &os, SalaReuniao &q1);
