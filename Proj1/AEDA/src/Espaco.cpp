@@ -151,9 +151,9 @@ int Quarto::getPrecoFinal(Data d1, Data d2) const {
 string Quarto::getRes() const
 {
 	if(reservado == true)
-		return "reservado";
-	else if(reservado == false)
-		return "nao reservado";
+		return "Reservado";
+	else
+		return "Nao reservado";
 }
 
 /**
@@ -179,7 +179,7 @@ void Quarto::setRes()
  */
 ostream &operator << (ostream &os, Quarto &q1)
 {
-	os << q1.getTipo() << ", " << q1.getLocal() << ", " << q1.getRes(); /*<< ", " << q1.getReservas()*/
+	os << q1.getRes() << ", " << q1.getTipo() << ", " << q1.getLocal(); /*<< ", " << q1.getReservas()*/
 	/*for(unsigned int i = 0; i < q1.getReservas().size(); i++)
 	{
 		os << ", " << q1.getReservas()[i] << " - " << q1.getReservas()[i+1];
@@ -250,7 +250,7 @@ int SalaReuniao::getPreco() const {
 int SalaReuniao::getPrecoMes(Data d) const {
 	int mes = d.getMes();
 	if ((6 <= mes && mes <= 8) || mes == 12){
-		return getPreco()*1.5;
+		return getPreco()*1.25;
 	}
 	else
 		return getPreco();
@@ -293,9 +293,9 @@ int SalaReuniao::getCapacidade() const {
 string SalaReuniao::getRes() const
 {
 	if(reservado)
-		return "reservada";
+		return "Reservada";
 	else
-		return "nao reservada";
+		return "Nao reservada";
 }
 
 /**
@@ -313,7 +313,7 @@ void SalaReuniao::setRes()
  */
 ostream &operator << (ostream &os, SalaReuniao &sr1)
 {
-	os << sr1.getCapacidade() << ", " << sr1.getVideo() << ", " << sr1.getAudio() << ", " << sr1.getRes();
+	os << sr1.getRes() << ", " << sr1.getCapacidade() << ", " << sr1.getVideo() << ", " << sr1.getAudio();
 	return os;
 }
 

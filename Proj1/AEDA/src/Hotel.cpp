@@ -344,7 +344,7 @@ void Hotel::printQuartosPorPreco() const
 	unsigned int k = 1;
 	for (unsigned int i = 0; i < quartos.size() ; i++)
 	{
-		if (quartos[i]->getRes() == "nao reservado")
+		if (quartos[i]->getRes() == "Nao reservado")
 			v.push_back(quartos[i]);
 	}
  	for(unsigned int i = 0; i < v.size(); i++)
@@ -375,7 +375,7 @@ void Hotel::printQuartosPorPreco() const
  	vector <Quarto *> aux;
  	for (unsigned int i = 0; i < v.size() ; i++)
 	{
-		if (v[i]->getRes() == "nao reservado")
+		if (v[i]->getRes() == "Nao reservado")
 				aux.push_back(v[i]);
 	}
  	for(unsigned int i = 0; i < aux.size(); i++)
@@ -440,7 +440,7 @@ void Hotel::printSalasReuniaoNaoReservadas() const
 	unsigned int k = 1;
 	for (unsigned int i = 0; i < salasreuniao.size() ; i++)
 	{
-		if (salasreuniao[i]->getRes() == "nao reservada")
+		if (salasreuniao[i]->getRes() == "Nao reservada")
 			v.push_back(salasreuniao[i]);
 	}
  	for(unsigned int i = 0; i < v.size(); i++)
@@ -473,7 +473,7 @@ void Hotel::printSalasReuniaoNaoReservadasPorPreco() const {
  	vector <SalaReuniao *> aux;
  	for (unsigned int i = 0; i < v.size() ; i++)
 	{
-		if (v[i]->getRes() == "nao reservada")
+		if (v[i]->getRes() == "Nao reservada")
 				aux.push_back(v[i]);
 	}
  	for(unsigned int i = 0; i < aux.size(); i++)

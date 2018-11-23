@@ -138,9 +138,9 @@ bool FazerReserva (Hotel *h)
 
 	for(unsigned int i = 0; i < h->getClientes().size(); i++)
 	{
-		if(h->getClientes()[i]->getNome() == nome)
+		if(h->getClientes()[i]->getNIF() == NIF)
 		{
-			numRes++;
+			h->getClientes()[i]->getNR()++;
 			existe = true;
 		}
 	}
@@ -230,7 +230,7 @@ bool FazerReserva (Hotel *h)
 	if(espaco == "1")
 	{
 		cout << "Quartos do hotel: " << endl << endl;
-		h->printQuartosNaoReservadosPorPreco();
+		h->printQuartos();
 		cout << endl << "Numero do quarto que pretende reservar: ";
 		unsigned int i;
 		cin >> i;
@@ -264,7 +264,7 @@ bool FazerReserva (Hotel *h)
 	else if(espaco == "2")
 	{
 		cout << "Salas de reuniao: " << endl << endl;
-		h->printSalasReuniaoNaoReservadasPorPreco();
+		h->printSalasReuniao();
 		cout << endl << "Numero da sala de reuniao que pretende reservar: ";
 		unsigned int i;
 		cin >> i;
@@ -281,9 +281,7 @@ bool FazerReserva (Hotel *h)
 		cout << "Preco a pagar: ";
 
 		int precoDia;
-		precoDia = h->getQuartos()[i-1]->getPrecoMes(d);
-
-		preco = precoDia * numDias;
+		precoDia = h->getQuartos()[i-1]->getPrecoFinal(d1, d2);
 
 		cout << preco << endl << endl;
 

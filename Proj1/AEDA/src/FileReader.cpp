@@ -79,24 +79,21 @@ vector<Quarto *> FileReader::readQuartos(string file)
 		//vector<Data> data;
 		//Data d;
 
+		reserv = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
 		tipo = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
-		local = line.substr(0, line.find(','));
-		line = line.substr(line.find(',') + 2);
-		reserv = line.substr(line.find(';'));
+		local = line.substr(0, line.find(';'));
 		/*while((line.find(",") + 2) != ';')
 		{
 			d = Data(line.substr(line.find(',')));
 			data.push_back(d);
 		}*/
 
-		bool reservado;
-		if (reserv == "reservado"){
+		bool reservado = false;
+		if (reserv == "Reservado"){
 			reservado = true;
 		}
-
-		if(reserv == "nao reservado")
-			reservado = false;
 
 		Quarto *q = new Quarto (tipo, local, reservado/*, data*/);
 		quartos.push_back (q);
@@ -121,16 +118,17 @@ vector<SalaReuniao *> FileReader::readSalasReuniao (string file)
 		string capacidade, vid, aud, reserv;
 		int c;
 
+
+		reserv = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
 		capacidade = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
 		vid = line.substr(0, line.find(','));
 		line = line.substr(line.find(',') + 2);
-		aud = line.substr(0, line.find(','));
-		line = line.substr(line.find(',') + 2);
-		reserv = line.substr(line.find(';'));
+		aud = line.substr(0, line.find(';'));
 
 		bool reservado = false;
-		if (reserv == "reservada"){
+		if (reserv == "Reservada"){
 			reservado = true;
 		}
 
