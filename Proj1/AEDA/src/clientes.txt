@@ -1,0 +1,3 @@
+Joao Lirio, 253924332, 2;
+Diogo Costa, 345685943, 2;
+Helder Marques, 342543654, 1;

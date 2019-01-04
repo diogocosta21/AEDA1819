@@ -12,13 +12,39 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
+#include "BST.h"
 #include "Cliente.h"
 #include "Espaco.h"
 #include "Funcionario.h"
 #include "Excecoes.h"
+
+
+struct AntigosClientes
+{
+	int operator() (const Cliente* c1) const
+	{
+		string s1 = c1->getNome();
+
+		int v = 0;
+		for ( unsigned int i=0; i< s1.size(); i++ )
+		 v = 37*v + s1[i];
+		return v;
+
+	}
+
+	bool operator() (const Cliente *c1, const Cliente *c2) const
+	{
+		return c1 == c2;
+	}
+};
+
+
+typedef unordered_set<Cliente*, AntigosClientes, AntigosClientes> tabHAntigos;
+
 
 class Hotel {
 private:
@@ -46,6 +72,10 @@ private:
 	 * @brief data atual
 	 */
 	Data data;
+	/**
+	 * @brief arvore binaria com restaurantes das redondezas
+	 */
+	BST <Restanturante> restaurantes;
 public:
 	Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao, vector<Supervisor *> supervisores);
 	virtual ~Hotel();

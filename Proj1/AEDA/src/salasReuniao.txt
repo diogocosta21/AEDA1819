@@ -1,0 +1,5 @@
+Mario Cotrim, Reservada, 10, Com equipamento de video, Com equipamento de audio;
+Nelson Torres, Reservada, 15, Sem equipamento de video, Sem equipamento de audio;
+Jose Siva, Reservada, 30, Com equipamento de video, Sem equipamento de audio;
+Mario Carneiro, Nao reservada, 30, Sem equipamento de video, Sem equipamento de audio;
+Nelson Torres, Nao reservada, 20, Sem equipamento de video, Com equipamento de audio;
