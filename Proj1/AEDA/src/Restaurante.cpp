@@ -111,4 +111,6 @@ bool Restaurante::operator ==(const Restaurante & r2) const
 ostream &operator<< (ostream &os, Restaurante &r1)
 {
 	os << r1.getNome() << ", " << r1.getTipo() << ", " << r1.getDist() << ";";
+
+	return os;
 }

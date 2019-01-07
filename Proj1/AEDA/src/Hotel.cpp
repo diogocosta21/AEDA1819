@@ -118,6 +118,33 @@ void Hotel::exportSalasReuniao(string file)
 }
 
 /**
+ * Exporta os restaurantes para ficheiro de texto
+ * @param file - ficheiro que guarda informaçao dos restaurantes
+ */
+void Hotel::exportRestaurantes(string file)
+{
+	ofstream os;
+	os.open(file.c_str());
+
+	BSTItrIn <Restaurante> it (restaurantes);
+	vector <Restaurante> v;
+
+	while (!it.isAtEnd())
+	{
+		v.push_back(it.retrieve());
+		it.advance();
+	}
+
+
+	for(unsigned int i = 0; i < v.size(); i++)
+	{
+		os << v[i] << endl;
+	}
+
+	os.close();
+}
+
+/**
  * Adiciona cliente ao vetor de clientes
  * @param nome - Nome do cliente
  * @param NIF - NIF do cliente
@@ -169,6 +196,18 @@ void Hotel::addSalaReuniao(int capacidade, bool video, bool audio, bool res, str
 {
 	SalaReuniao * sr = new SalaReuniao(capacidade, video, audio, res, nome);
 	salasreuniao.push_back(sr);
+}
+
+/**
+ * Adiciona restaurante a arvore binaria de pesquisa dos restaurantes
+ * @param nome - nome do restaurante
+ * @param tipo - tipo de cozinha do restaurante
+ * @param dist - distancia do restaurante ao hotel
+ */
+void Hotel::addRestaurante(string nome, string tipo, int dist)
+{
+	Restaurante r = new Restaurante(nome, tipo, dist);
+	restaurantes.insert(r);
 }
 
 /**

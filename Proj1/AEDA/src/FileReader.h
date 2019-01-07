@@ -22,6 +22,7 @@ using namespace std;
 #include "Funcionario.h"
 #include "Data.h"
 #include "Hotel.h"
+#include "Restaurante.h"
 
 class FileReader
 {
@@ -33,6 +34,7 @@ public:
 	static vector<SalaReuniao *> readSalasReuniao(string file);
 	static vector<Funcionario *> readFuncionarios (string file);
 	static vector<Supervisor *> readSupervisores (string file);
+	static vector<Restaurante *> readRestaurantes(string file);
 };
 
 

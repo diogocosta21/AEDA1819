@@ -21,6 +21,7 @@ using namespace std;
 #include "Espaco.h"
 #include "Funcionario.h"
 #include "Excecoes.h"
+#include "Restaurante.h"
 
 
 struct AntigosClientes
@@ -75,7 +76,10 @@ private:
 	/**
 	 * @brief arvore binaria com restaurantes das redondezas
 	 */
-	BST <Restanturante> restaurantes;
+	BST <Restaurante> restaurantes;
+	/**
+	 * priority_queue
+	 */
 public:
 	Hotel(vector<Cliente *> clientes, vector<Funcionario *> funcionarios, vector<Quarto *> quartos, vector<SalaReuniao *> salasreuniao, vector<Supervisor *> supervisores);
 	virtual ~Hotel();
@@ -84,11 +88,13 @@ public:
 	void exportSupervisores(string file);
 	void exportQuartos(string file);
 	void exportSalasReuniao(string file);
+	void exportRestaurantes(string file);
 	void addCliente(string nome, int NIF, unsigned int numRes);
 	void addFuncionario(string nome);
 	void addSupervisor(string nome, int numQuartos);
 	void addQuarto(string tipo, string lugar, bool res, string nome);
 	void addSalaReuniao(int capacidade, bool video, bool audio, bool res, string nome);
+	void addRestaurante(string nome, string tipo, int dist);
 	void removeCliente(string nome);
 	void setFuncionario(Funcionario func);
 	vector<Cliente *> getClientes() const;

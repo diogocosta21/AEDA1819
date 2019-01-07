@@ -198,4 +198,31 @@ vector <Supervisor * > FileReader::readSupervisores(string file)
 	return supervisores;
 }
 
+/**
+ * Lê informaçao dos restaurantes
+ * @param file - ficheiro dos restaurantes
+ */
+vector <Restaurante *> FileReader::readRestaurantes(string file)
+{
+	vector <Restaurante *> restaurantes;
+
+	vector<string> lines = FileReader::readLines(file);
+
+	for(unsigned int i = 0; i < lines.size(); i++)
+	{
+		string line = lines[i];
+		string nome, dist, cozinha;
+
+		nome = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
+		cozinha = line.substr(0, line.find(','));
+		line = line.substr(line.find(',') + 2);
+		dist = line.substr(0, line.find(';'));
+
+		Restaurante *r = new Restaurante (nome, cozinha, stoi(dist.c_str()));
+		restaurantes.push_back(r);
+	}
+
+	return restaurantes;
+}
 
