@@ -1,4 +1,0 @@
-Jose Silva, 3;
-Mario Carneiro, 3;
-Nelson Torres, 3;
-Francisco Rocha, 0;
