@@ -1,4 +1,0 @@
-Jose Silva, Reservado, simples  , frente;
-Mario Carneiro, Nao reservado, simples  , traseiras;
-Nelson Torres, Reservado, duplo  , frente;
-Jose Silva, Nao reservado, duplo  , traseiras;
