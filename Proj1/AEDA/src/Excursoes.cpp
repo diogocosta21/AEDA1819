@@ -22,4 +22,5 @@ void Carrinha::VecparaQueue() const {
 		Carrinha aux = carrinhasv[i];
 
 		carrinhas.push( 1, 2);
+	}
 }
